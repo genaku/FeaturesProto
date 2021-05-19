@@ -6,7 +6,6 @@ import androidx.activity.addCallback
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
 import com.genaku.navigator.LocalRouter
-import com.genaku.navigator.NavRouter
 import org.koin.android.ext.android.inject
 
 open class RouterFragment(@LayoutRes contentLayoutId: Int) : Fragment(contentLayoutId) {

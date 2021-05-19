@@ -20,5 +20,11 @@ class NotificationsFragment : RouterFragment(R.layout.fragment_notifications) {
         notificationsViewModel.text.observe(viewLifecycleOwner) {
             viewBinding.textNotifications.text = it
         }
+        viewBinding.btnYes.setOnClickListener {
+            notificationsViewModel.backWithResult(true)
+        }
+        viewBinding.btnNo.setOnClickListener {
+            notificationsViewModel.backWithResult(false)
+        }
     }
 }

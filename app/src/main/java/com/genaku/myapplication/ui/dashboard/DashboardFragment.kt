@@ -29,6 +29,9 @@ class DashboardFragment : RouterFragment(R.layout.fragment_dashboard) {
             text.observe(viewLifecycleOwner) {
                 viewBinding.textDashboard.text = it
             }
+            result.observe(viewLifecycleOwner) {
+                viewBinding.tvAnswer.text = it
+            }
         }
     }
 

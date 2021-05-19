@@ -1,6 +1,6 @@
 package com.genaku.navigator
 
-class NavFeatureRouter(private val router: NavRouter<NavFeature>): NavRouter<NavFeature> by router {
+class FeatureRouter(private val router: NavRouter<NavFeature>): NavRouter<NavFeature> by router {
 
     override fun start(screen: NavFeature) {
         if (screen.isAvailable) {
@@ -8,4 +8,3 @@ class NavFeatureRouter(private val router: NavRouter<NavFeature>): NavRouter<Nav
         }
     }
 }
-

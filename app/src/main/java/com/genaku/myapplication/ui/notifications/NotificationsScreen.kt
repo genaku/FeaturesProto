@@ -8,8 +8,6 @@ import com.genaku.navigator_core.ScreenResult
 class NotificationsScreen(override val arguments: NotificationsScreenArguments) :
     NavScreen(R.id.navigation_notifications)
 
-class NotificationsScreenArguments(val name: String) :
-    ScreenArguments
+class NotificationsScreenArguments(val message: String) : ScreenArguments
 
-class NotificationsScreenResult(val success: Boolean) :
-    ScreenResult
+class NotificationsScreenResult(val answer: String) : ScreenResult

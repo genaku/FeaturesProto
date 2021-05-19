@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import com.genaku.myapplication.ui.RouterViewModel
 import com.genaku.myapplication.ui.notifications.NotificationsScreen
 import com.genaku.myapplication.ui.notifications.NotificationsScreenArguments
+import com.genaku.myapplication.ui.notifications.NotificationsScreenResult
 
 class DashboardViewModel(private val uid: Long) : RouterViewModel() {
 
@@ -15,8 +16,14 @@ class DashboardViewModel(private val uid: Long) : RouterViewModel() {
     }
     val text: LiveData<String> = _text
 
+    val result = MutableLiveData<String>()
+
     fun openNotifications() {
-        router.start(NotificationsScreen(NotificationsScreenArguments("My name")))
+        val screen = NotificationsScreen(NotificationsScreenArguments("This is notification message"))
+        screen.observe<NotificationsScreenResult> {
+            result.postValue(it.answer)
+        }
+        router.start(screen)
     }
 
     fun backWithResult(success: Boolean) {
