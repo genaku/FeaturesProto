@@ -1,10 +1,17 @@
 package com.genaku.navigator
 
-class FeatureRouter(private val router: NavRouter<NavFeature>): NavRouter<NavFeature> by router {
+class FeatureRouter(navCommandQueue: NavCommandQueue) :
+    NavRouterImpl<NavFeature>(navCommandQueue) {
 
     override fun start(screen: NavFeature) {
         if (screen.isAvailable) {
-            router.start(screen)
+            super.start(screen)
         }
+    }
+
+    override fun close(uid: Long) {
+        val screen =
+            screens[uid] ?: throw NoSuchElementException("Screen with uid = $uid not found")
+        navCommandQueue.send(Action(screen.finishActionResId))
     }
 }

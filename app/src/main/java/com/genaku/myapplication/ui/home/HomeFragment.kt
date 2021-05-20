@@ -25,10 +25,24 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             result.observe(viewLifecycleOwner) {
                 viewBinding.tvResult.text = it
             }
+            featureResult.observe(viewLifecycleOwner) {
+                viewBinding.tvFeatureResult.text = it
+            }
         }
 
-        viewBinding.button1.setOnClickListener {
-            homeViewModel.openDashboard()
+        with(viewBinding) {
+            button1.setOnClickListener {
+                homeViewModel.openDashboard()
+            }
+            btnFeatureA.setOnClickListener {
+                homeViewModel.startFeatureA()
+            }
+            btnFeatureB.setOnClickListener {
+                homeViewModel.startFeatureB()
+            }
+            btnFeatureC.setOnClickListener {
+                homeViewModel.startFeatureC()
+            }
         }
     }
 }

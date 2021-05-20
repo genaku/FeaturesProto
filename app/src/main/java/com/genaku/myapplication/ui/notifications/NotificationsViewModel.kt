@@ -6,7 +6,7 @@ import com.genaku.myapplication.ui.RouterViewModel
 
 class NotificationsViewModel(private val uid: Long) : RouterViewModel() {
 
-    private val args = router.getArguments(uid) as NotificationsScreenArguments
+    private val args = router.getArguments(uid) as NotificationsScreenParams
 
     private val _text = MutableLiveData<String>().apply {
         value = "This is notifications Fragment with text [${args.message}]"

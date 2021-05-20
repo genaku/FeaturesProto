@@ -2,46 +2,50 @@ package com.genaku.navigator
 
 import android.os.Bundle
 import android.util.Log
-import com.genaku.navigator_core.ScreenArguments
+import com.genaku.navigator_core.ScreenParams
 import com.genaku.navigator_core.ScreenResult
 import kotlinx.coroutines.flow.Flow
 import java.util.*
 import java.util.concurrent.ConcurrentHashMap
 import kotlin.NoSuchElementException
 
-open class NavRouterImpl : LocalRouter {
+open class NavRouterImpl<T: NavScreen>(protected val navCommandQueue: NavCommandQueue) : NavRouter<T> {
 
-    private val queue = NavCommandQueue()
-    private val screens: ConcurrentHashMap<Long, NavScreen> = ConcurrentHashMap()
+    protected val screens: ConcurrentHashMap<Long, T> = ConcurrentHashMap()
 
     override val navCommandFlow: Flow<NavCommand>
-        get() = queue.navCommandFlow
+        get() = navCommandQueue.navCommandFlow
 
-    override fun start(screen: NavScreen) {
+    override fun start(screen: T) {
         val uid = Date().time
+        Log.d("TAF", "start ${screen.javaClass.simpleName} with uid=$uid")
         screens[uid] = screen
-        queue.send(screen.toNavCommandOpen(uid))
+        navCommandQueue.send(screen.toNavCommandOpen(uid))
     }
 
     override fun getUid(arguments: Bundle?): Long? =
         arguments?.getLong(NAV_UID)
 
-    override fun getArguments(uid: Long): ScreenArguments? =
-        screens[uid]?.arguments
+    override fun getArguments(uid: Long): ScreenParams? =
+        screens[uid]?.params
 
     override fun finishWithResult(uid: Long, result: ScreenResult) {
-        Log.d("TAG", "finish for uid=$uid with result $result")
+        Log.d("TAF", "finish for uid=$uid with result $result")
         val screen = screens[uid]
             ?: throw NoSuchElementException("Screen with uid = $uid not found")
         screen.resultStateFlow.tryEmit(result)
+        close(uid)
         screens.remove(uid)
-        queue.send(Back)
     }
 
     override fun finish(uid: Long) {
-        Log.d("TAG", "finish for uid=$uid")
+        Log.d("TAF", "finish for uid=$uid")
+        close(uid)
         screens.remove(uid)
-        queue.send(Back)
+    }
+
+    protected open fun close(uid: Long) {
+        navCommandQueue.send(Back)
     }
 
     private fun NavScreen.toNavCommandOpen(uid: Long): NavCommand =

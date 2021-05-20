@@ -1,9 +1,9 @@
 package com.genaku.myapplication
 
 import android.app.Application
-import com.genaku.navigator.LocalRouter
-import com.genaku.navigator.NavRouter
-import com.genaku.navigator.NavRouterImpl
+import com.genaku.feature_a.getFeatureAKoinModule
+import com.genaku.navigator.*
+import org.koin.core.context.loadKoinModules
 import org.koin.core.context.startKoin
 import org.koin.core.module.Module
 import org.koin.dsl.module
@@ -22,7 +22,8 @@ class MyApplication : Application() {
         startKoin {
             modules(
                 listOf(
-                    AppKoinModule.create(),
+                    getAppKoinModule(),
+                    getFeatureAKoinModule()
                 )
             )
         }
@@ -30,10 +31,11 @@ class MyApplication : Application() {
 
 }
 
-object AppKoinModule {
-    fun create(): Module {
-        return module {
-            single<LocalRouter> { NavRouterImpl() }
-        }
+fun getAppKoinModule(): Module {
+    loadKoinModules(
+        getNavigationModule()
+    )
+    return module {
+        single<NavRouter<NavScreen>> { NavRouterImpl(get()) }
     }
 }

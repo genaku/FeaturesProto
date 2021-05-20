@@ -4,12 +4,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.genaku.myapplication.ui.RouterViewModel
 import com.genaku.myapplication.ui.notifications.NotificationsScreen
-import com.genaku.myapplication.ui.notifications.NotificationsScreenArguments
+import com.genaku.myapplication.ui.notifications.NotificationsScreenParams
 import com.genaku.myapplication.ui.notifications.NotificationsScreenResult
 
 class DashboardViewModel(private val uid: Long) : RouterViewModel() {
 
-    private val args = router.getArguments(uid) as DashboardScreenArguments
+    private val args = router.getArguments(uid) as DashboardScreenParams
 
     private val _text = MutableLiveData<String>().apply {
         value = "This is dashboard Fragment with args: [$args]"
@@ -19,7 +19,7 @@ class DashboardViewModel(private val uid: Long) : RouterViewModel() {
     val result = MutableLiveData<String>()
 
     fun openNotifications() {
-        val screen = NotificationsScreen(NotificationsScreenArguments("This is notification message"))
+        val screen = NotificationsScreen(NotificationsScreenParams("This is notification message"))
         screen.observe<NotificationsScreenResult> {
             result.postValue(it.answer)
         }

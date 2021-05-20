@@ -2,3 +2,4 @@ rootProject.name = "FeaturesProto"
 include ':app'
 include ':navigator_core'
 include ':navigator'
+include ':feature-a'

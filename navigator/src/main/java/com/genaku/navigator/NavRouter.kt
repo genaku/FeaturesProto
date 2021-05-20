@@ -8,5 +8,3 @@ interface NavRouter<T: NavScreen>: Router<T> {
     val navCommandFlow: Flow<NavCommand>
     fun getUid(arguments: Bundle?): Long?
 }
-
-interface LocalRouter: NavRouter<NavScreen>

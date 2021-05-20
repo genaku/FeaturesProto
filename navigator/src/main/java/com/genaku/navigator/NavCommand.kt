@@ -7,3 +7,5 @@ sealed class NavCommand
 object Back : NavCommand()
 
 data class Open(val destinationResId: Int, val args: Bundle) : NavCommand()
+
+data class Action(val actionResId: Int): NavCommand()
