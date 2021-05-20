@@ -38,4 +38,6 @@
     </fragment>
 
     <include app:graph="@navigation/feature_a_nav_graph" />
+    <include app:graph="@navigation/feature_b_nav_graph" />
+
 </navigation>

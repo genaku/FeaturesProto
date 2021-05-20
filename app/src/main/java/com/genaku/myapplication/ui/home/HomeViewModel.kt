@@ -2,16 +2,24 @@ package com.genaku.myapplication.ui.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.genaku.feature_a.FeatureAResult
-import com.genaku.feature_a.createFeatureA
-import com.genaku.myapplication.ui.RouterViewModel
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.genaku.feature_a_api.FeatureA
+import com.genaku.feature_a_api.FeatureAParams
+import com.genaku.feature_a_api.FeatureAResult
+import com.genaku.feature_b_api.FeatureB
+import com.genaku.feature_b_api.FeatureBParams
+import com.genaku.feature_b_api.FeatureBResult
 import com.genaku.myapplication.ui.dashboard.DashboardScreen
 import com.genaku.myapplication.ui.dashboard.DashboardScreenParams
 import com.genaku.myapplication.ui.dashboard.DashboardScreenResult
-import com.genaku.navigator.FeatureRouter
+import com.genaku.navigator.nav.observe
+import com.genaku.navigator.nav.FeatureRouter
+import com.genaku.navigator.nav.LocalRouter
+import org.koin.core.parameter.parametersOf
 import org.koin.java.KoinJavaComponent
 
-class HomeViewModel : RouterViewModel() {
+class HomeViewModel(private val router: LocalRouter) : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
         value = "This is home Fragment"
@@ -25,7 +33,7 @@ class HomeViewModel : RouterViewModel() {
 
     fun openDashboard() {
         val screen = DashboardScreen(DashboardScreenParams(name = "First name", id = 20))
-        screen.observe<DashboardScreenResult> {
+        screen.observe<DashboardScreenResult>(viewModelScope) {
             // передать результат в обработку в usecase или куда-угодно
             // здесь просто выведем на экран
             result.postValue(it.success.toString())
@@ -35,7 +43,7 @@ class HomeViewModel : RouterViewModel() {
 
     fun startFeatureA() {
         val feature = createFeatureA(id = 1, films = emptyList())
-        feature.observe<FeatureAResult> {
+        feature.observe<FeatureAResult>(viewModelScope) {
             // передать результат в обработку в usecase или куда-угодно
             // здесь просто выведем на экран
             featureResult.postValue("FeatureA result = $it")
@@ -43,7 +51,23 @@ class HomeViewModel : RouterViewModel() {
         featureRouter.start(feature)
     }
 
-    fun startFeatureB() {}
+    fun startFeatureB() {
+        val feature = createFeatureB(true)
+        feature.observe<FeatureBResult>(viewModelScope) {
+            featureResult.postValue("FeatureB result = $it")
+        }
+        featureRouter.start(feature)
+    }
 
     fun startFeatureC() {}
+
+    private fun createFeatureA(id: Long, films: List<String>): FeatureA {
+        val params = FeatureAParams(id, films)
+        return KoinJavaComponent.get(FeatureA::class.java, parameters = { parametersOf(params) })
+    }
+
+    private fun createFeatureB(needReset: Boolean): FeatureB {
+        val params = FeatureBParams(needReset)
+        return KoinJavaComponent.get(FeatureB::class.java, parameters = { parametersOf(params) })
+    }
 }

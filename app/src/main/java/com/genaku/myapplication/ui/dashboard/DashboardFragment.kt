@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.view.View
 import com.genaku.myapplication.R
 import com.genaku.myapplication.databinding.FragmentDashboardBinding
-import com.genaku.myapplication.ui.RouterFragment
-import com.genaku.myapplication.ui.getViewModel
+import com.genaku.myapplication.RouterFragment
+import com.genaku.ui_core.getViewModel
 import com.hoc081098.viewbindingdelegate.viewBinding
 
 class DashboardFragment : RouterFragment(R.layout.fragment_dashboard) {
@@ -25,7 +25,7 @@ class DashboardFragment : RouterFragment(R.layout.fragment_dashboard) {
     }
 
     private fun setupViewModel() {
-        dashboardViewModel = getViewModel { DashboardViewModel(uid) }.apply {
+        dashboardViewModel = getViewModel { DashboardViewModel(uid, router) }.apply {
             text.observe(viewLifecycleOwner) {
                 viewBinding.textDashboard.text = it
             }

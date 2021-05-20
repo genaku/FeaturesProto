@@ -2,11 +2,12 @@ package com.genaku.myapplication.ui.notifications
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.genaku.myapplication.ui.RouterViewModel
+import androidx.lifecycle.ViewModel
+import com.genaku.navigator.nav.LocalRouter
 
-class NotificationsViewModel(private val uid: Long) : RouterViewModel() {
+class NotificationsViewModel(private val uid: Long, private val router: LocalRouter) : ViewModel() {
 
-    private val args = router.getArguments(uid) as NotificationsScreenParams
+    private val args = router.getParametersOrNull(uid) as NotificationsScreenParams
 
     private val _text = MutableLiveData<String>().apply {
         value = "This is notifications Fragment with text [${args.message}]"

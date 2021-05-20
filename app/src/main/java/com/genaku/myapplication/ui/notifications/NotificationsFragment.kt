@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.view.View
 import com.genaku.myapplication.R
 import com.genaku.myapplication.databinding.FragmentNotificationsBinding
-import com.genaku.myapplication.ui.RouterFragment
-import com.genaku.myapplication.ui.getViewModel
+import com.genaku.myapplication.RouterFragment
+import com.genaku.ui_core.getViewModel
 import com.hoc081098.viewbindingdelegate.viewBinding
 
 class NotificationsFragment : RouterFragment(R.layout.fragment_notifications) {
@@ -16,7 +16,8 @@ class NotificationsFragment : RouterFragment(R.layout.fragment_notifications) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        notificationsViewModel = getViewModel { NotificationsViewModel(uid) }
+
+        notificationsViewModel = getViewModel { NotificationsViewModel(uid, router) }
         notificationsViewModel.text.observe(viewLifecycleOwner) {
             viewBinding.textNotifications.text = it
         }
