@@ -5,7 +5,7 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.genaku.feature_a.databinding.FeatureAStartFragmentBinding
-import com.genaku.navigator.getUid
+import com.genaku.ui_core.getUid
 import com.hoc081098.viewbindingdelegate.viewBinding
 import org.koin.java.KoinJavaComponent
 

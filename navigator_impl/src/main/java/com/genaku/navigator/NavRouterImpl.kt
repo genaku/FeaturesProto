@@ -16,6 +16,10 @@ open class NavRouterImpl<T : NavScreen>(
 
     protected val screens: ConcurrentHashMap<Long, T> = ConcurrentHashMap()
 
+    init {
+        Log.d("TAF", "NavRouterImpl created")
+    }
+
     override val navCommandFlow: Flow<NavCommand>
         get() = navCommandQueue.navCommandFlow
 
@@ -47,13 +51,4 @@ open class NavRouterImpl<T : NavScreen>(
     protected open fun close(uid: Long) {
         navCommandQueue.send(Back)
     }
-}
-
-internal const val NAV_UID = "navUid"
-
-fun getUid(arguments: Bundle?): Long? =
-    arguments?.getLong(NAV_UID)
-
-fun uidToBundle(uid: Long) = Bundle().apply {
-    putLong(NAV_UID, uid)
 }

@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.View
 import com.genaku.myapplication.R
 import com.genaku.myapplication.databinding.FragmentNotificationsBinding
-import com.genaku.myapplication.RouterFragment
+import com.genaku.ui_core.RouterFragment
 import com.genaku.ui_core.getViewModel
 import com.hoc081098.viewbindingdelegate.viewBinding
 

@@ -5,8 +5,8 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
-import com.genaku.navigator.*
 import com.genaku.navigator.nav.*
+import com.genaku.ui_core.uidToBundle
 import kotlinx.coroutines.flow.collect
 import org.koin.android.ext.android.inject
 import org.koin.core.component.KoinApiExtension
