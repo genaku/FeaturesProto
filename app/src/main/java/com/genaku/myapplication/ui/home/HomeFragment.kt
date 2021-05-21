@@ -21,7 +21,11 @@ class HomeFragment : Fragment(R.layout.fragment_home), KoinComponent {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupViewModel()
+        setupButtons()
+    }
 
+    private fun setupViewModel() {
         homeViewModel = getViewModel { HomeViewModel(router) }.apply {
             text.observe(viewLifecycleOwner) {
                 viewBinding.textHome.text = it
@@ -33,7 +37,9 @@ class HomeFragment : Fragment(R.layout.fragment_home), KoinComponent {
                 viewBinding.tvFeatureResult.text = it
             }
         }
+    }
 
+    private fun setupButtons() {
         with(viewBinding) {
             button1.setOnClickListener {
                 homeViewModel.openDashboard()
