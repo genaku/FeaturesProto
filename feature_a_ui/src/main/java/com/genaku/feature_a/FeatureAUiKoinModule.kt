@@ -2,7 +2,7 @@ package com.genaku.feature_a
 
 import com.genaku.feature_a_api.FeatureA
 import com.genaku.feature_a_api.FeatureAParams
-import com.genaku.navigator.getNavigationModule
+import com.genaku.navigator_di.getNavigationModule
 import org.koin.core.context.loadKoinModules
 import org.koin.core.module.Module
 import org.koin.dsl.module

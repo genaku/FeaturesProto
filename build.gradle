@@ -2,7 +2,8 @@
 buildscript {
     ext.kotlin_version = "1.5.0"
     ext.nav_version = "2.3.5"
-    ext.koin_version = "2.2.2"
+    ext.koin_version = "3.0.2"
+    ext.router_version = "4392f8e9bd"
     repositories {
         google()
         mavenCentral()

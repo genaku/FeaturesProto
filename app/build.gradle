@@ -52,15 +52,13 @@ dependencies {
 
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.0"
 
-    implementation project(path: ':navigator_impl')
+    implementation project(path: ':navigator_di')
     implementation project(path: ':ui_core')
 
     implementation project(path: ':feature_a_ui')
     implementation project(path: ':feature_b_ui')
 
-    implementation "org.koin:koin-androidx-scope:$koin_version"
-    implementation "org.koin:koin-androidx-viewmodel:$koin_version"
-    implementation "org.koin:koin-androidx-fragment:$koin_version"
+    implementation "io.insert-koin:koin-android:$koin_version"
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'

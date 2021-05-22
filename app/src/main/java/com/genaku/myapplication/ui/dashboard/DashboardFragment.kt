@@ -2,13 +2,14 @@ package com.genaku.myapplication.ui.dashboard
 
 import android.os.Bundle
 import android.view.View
+import com.genaku.myapplication.AppScope
 import com.genaku.myapplication.R
 import com.genaku.myapplication.databinding.FragmentDashboardBinding
 import com.genaku.ui_core.RouterFragment
 import com.genaku.ui_core.getViewModel
 import com.hoc081098.viewbindingdelegate.viewBinding
 
-class DashboardFragment : RouterFragment(R.layout.fragment_dashboard) {
+class DashboardFragment : RouterFragment(R.layout.fragment_dashboard, AppScope.scope) {
 
     private lateinit var dashboardViewModel: DashboardViewModel
 

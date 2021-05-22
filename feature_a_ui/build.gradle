@@ -44,16 +44,15 @@ dependencies {
 
     api project(path: ':feature_a_api')
     implementation project(path: ':ui_core')
-    implementation project(path: ':navigator_impl')
+    implementation project(path: ':navigator_di')
+//    implementation project(path: ':navigator_impl')
 
     implementation 'androidx.navigation:navigation-fragment-ktx:2.3.5'
     implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
 
     implementation 'com.github.hoc081098:ViewBindingDelegate:1.0.0'
 
-    implementation "org.koin:koin-androidx-scope:$koin_version"
-    implementation "org.koin:koin-androidx-viewmodel:$koin_version"
-    implementation "org.koin:koin-androidx-fragment:$koin_version"
+    implementation "io.insert-koin:koin-android:$koin_version"
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'

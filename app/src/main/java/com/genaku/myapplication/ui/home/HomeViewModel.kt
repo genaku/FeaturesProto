@@ -13,13 +13,14 @@ import com.genaku.feature_b_api.FeatureBResult
 import com.genaku.myapplication.ui.dashboard.DashboardScreen
 import com.genaku.myapplication.ui.dashboard.DashboardScreenParams
 import com.genaku.myapplication.ui.dashboard.DashboardScreenResult
-import com.genaku.navigator.nav.observe
-import com.genaku.navigator.nav.FeatureRouter
-import com.genaku.navigator.nav.LocalRouter
+import com.genaku.navrouterbase.NavFeatureRouter
+import com.genaku.navrouterbase.NavRouter
+import com.genaku.router.FeatureRouter
+import com.genaku.router.observe
 import org.koin.core.parameter.parametersOf
 import org.koin.java.KoinJavaComponent
 
-class HomeViewModel(private val router: LocalRouter) : ViewModel() {
+class HomeViewModel(private val router: NavRouter) : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
         value = "This is home Fragment"
@@ -29,7 +30,7 @@ class HomeViewModel(private val router: LocalRouter) : ViewModel() {
     val result: MutableLiveData<String> = MutableLiveData()
     val featureResult = MutableLiveData<String>()
 
-    private val featureRouter: FeatureRouter by KoinJavaComponent.inject(FeatureRouter::class.java)
+    private val featureRouter: NavFeatureRouter by KoinJavaComponent.inject(NavFeatureRouter::class.java)
 
     fun openDashboard() {
         val screen = DashboardScreen(DashboardScreenParams(name = "First name", id = 20))

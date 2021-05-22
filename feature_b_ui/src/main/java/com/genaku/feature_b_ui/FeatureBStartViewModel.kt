@@ -7,15 +7,15 @@ import androidx.lifecycle.viewModelScope
 import com.genaku.feature_a_api.FeatureA
 import com.genaku.feature_a_api.FeatureAParams
 import com.genaku.feature_a_api.FeatureAResult
-import com.genaku.navigator.nav.observe
-import com.genaku.navigator.nav.FeatureRouter
-import com.genaku.navigator.nav.LocalRouter
+import com.genaku.navrouterbase.NavFeatureRouter
+import com.genaku.navrouterbase.NavRouter
+import com.genaku.router.observe
 import org.koin.core.parameter.parametersOf
 import org.koin.java.KoinJavaComponent
 
 internal class FeatureBStartViewModel(
-    private val router: LocalRouter,
-    private val featureRouter: FeatureRouter
+    private val router: NavRouter,
+    private val featureRouter: NavFeatureRouter
 ) : ViewModel() {
 
     private val timeMutable = MutableLiveData<Long>()

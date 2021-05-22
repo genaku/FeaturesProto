@@ -7,10 +7,10 @@ import androidx.lifecycle.viewModelScope
 import com.genaku.myapplication.ui.notifications.NotificationsScreen
 import com.genaku.myapplication.ui.notifications.NotificationsScreenParams
 import com.genaku.myapplication.ui.notifications.NotificationsScreenResult
-import com.genaku.navigator.nav.observe
-import com.genaku.navigator.nav.LocalRouter
+import com.genaku.navrouterbase.NavRouter
+import com.genaku.router.observe
 
-class DashboardViewModel(private val uid: Long, private val router: LocalRouter) : ViewModel() {
+class DashboardViewModel(private val uid: Long, private val router: NavRouter) : ViewModel() {
 
     private val args = router.getParametersOrNull(uid) as DashboardScreenParams
 

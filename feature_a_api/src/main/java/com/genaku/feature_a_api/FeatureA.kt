@@ -1,8 +1,8 @@
 package com.genaku.feature_a_api
 
-import com.genaku.navigator.base.ScreenResult
-import com.genaku.navigator.base.ScreenParams
-import com.genaku.navigator.nav.NavFeature
+import com.genaku.navrouterbase.NavFeature
+import com.genaku.router.ScreenParams
+import com.genaku.router.ScreenResult
 
 interface FeatureA: NavFeature
 

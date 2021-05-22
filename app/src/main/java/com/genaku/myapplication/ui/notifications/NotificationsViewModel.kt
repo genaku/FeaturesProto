@@ -3,9 +3,9 @@ package com.genaku.myapplication.ui.notifications
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.genaku.navigator.nav.LocalRouter
+import com.genaku.navrouterbase.NavRouter
 
-class NotificationsViewModel(private val uid: Long, private val router: LocalRouter) : ViewModel() {
+class NotificationsViewModel(private val uid: Long, private val router: NavRouter) : ViewModel() {
 
     private val args = router.getParametersOrNull(uid) as NotificationsScreenParams
 

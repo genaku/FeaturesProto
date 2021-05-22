@@ -2,13 +2,14 @@ package com.genaku.myapplication.ui.notifications
 
 import android.os.Bundle
 import android.view.View
+import com.genaku.myapplication.AppScope
 import com.genaku.myapplication.R
 import com.genaku.myapplication.databinding.FragmentNotificationsBinding
 import com.genaku.ui_core.RouterFragment
 import com.genaku.ui_core.getViewModel
 import com.hoc081098.viewbindingdelegate.viewBinding
 
-class NotificationsFragment : RouterFragment(R.layout.fragment_notifications) {
+class NotificationsFragment : RouterFragment(R.layout.fragment_notifications, AppScope.scope) {
 
     private lateinit var notificationsViewModel: NotificationsViewModel
 
