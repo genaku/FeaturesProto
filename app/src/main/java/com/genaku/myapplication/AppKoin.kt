@@ -1,7 +1,8 @@
 package com.genaku.myapplication
 
 import com.genaku.navigator_di.getNavigationModule
-import com.genaku.navrouterbase.NavRouter
+import com.genaku.navrouter.NavRouter
+import com.genaku.navrouter.StorableNavRouter
 import org.koin.core.component.KoinScopeComponent
 import org.koin.core.component.newScope
 import org.koin.core.context.loadKoinModules
@@ -15,7 +16,7 @@ fun getAppKoinModule(): Module {
     )
     return module {
         scope<AppScope> {
-            scoped { NavRouter(get()) }
+            scoped { StorableNavRouter(get()) as NavRouter}
         }
     }
 }

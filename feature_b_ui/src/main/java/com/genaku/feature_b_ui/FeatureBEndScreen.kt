@@ -1,6 +1,6 @@
 package com.genaku.feature_b_ui
 
-import com.genaku.navrouterbase.AbstractNavScreen
+import com.genaku.navrouter.AbstractNavScreen
 import com.genaku.router.ScreenParams
 import com.genaku.router.ScreenResult
 

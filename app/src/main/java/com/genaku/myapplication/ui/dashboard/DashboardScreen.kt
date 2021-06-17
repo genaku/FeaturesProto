@@ -1,7 +1,7 @@
 package com.genaku.myapplication.ui.dashboard
 
 import com.genaku.myapplication.R
-import com.genaku.navrouterbase.AbstractNavScreen
+import com.genaku.navrouter.AbstractNavScreen
 import com.genaku.router.ScreenParams
 import com.genaku.router.ScreenResult
 

@@ -13,8 +13,8 @@ import com.genaku.feature_b_api.FeatureBResult
 import com.genaku.myapplication.ui.dashboard.DashboardScreen
 import com.genaku.myapplication.ui.dashboard.DashboardScreenParams
 import com.genaku.myapplication.ui.dashboard.DashboardScreenResult
-import com.genaku.navrouterbase.NavFeatureRouter
-import com.genaku.navrouterbase.NavRouter
+import com.genaku.navrouter.NavFeatureRouter
+import com.genaku.navrouter.NavRouter
 import com.genaku.router.FeatureRouter
 import com.genaku.router.observe
 import org.koin.core.parameter.parametersOf

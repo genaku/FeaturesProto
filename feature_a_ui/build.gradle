@@ -44,7 +44,7 @@ dependencies {
 
     api project(path: ':feature_a_api')
     implementation project(path: ':ui_core')
-    implementation project(path: ':navigator_di')
+    api project(path: ':mylibrary')
 //    implementation project(path: ':navigator_impl')
 
     implementation 'androidx.navigation:navigation-fragment-ktx:2.3.5'

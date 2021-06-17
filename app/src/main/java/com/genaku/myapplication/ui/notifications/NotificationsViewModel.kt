@@ -3,7 +3,7 @@ package com.genaku.myapplication.ui.notifications
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.genaku.navrouterbase.NavRouter
+import com.genaku.navrouter.NavRouter
 
 class NotificationsViewModel(private val uid: Long, private val router: NavRouter) : ViewModel() {
 

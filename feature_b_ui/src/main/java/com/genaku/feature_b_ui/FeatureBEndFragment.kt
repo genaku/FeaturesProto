@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.View
 import com.genaku.feature_b_api.FeatureBResult
 import com.genaku.feature_b_ui.databinding.FeatureBEndFragmentBinding
-import com.genaku.navrouterbase.NavFeatureRouter
+import com.genaku.navrouter.NavFeatureRouter
 import com.genaku.ui_core.RouterFragment
 import com.hoc081098.viewbindingdelegate.viewBinding
 import org.koin.core.component.inject

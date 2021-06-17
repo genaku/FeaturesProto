@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.view.View
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
-import com.genaku.navrouterbase.NavRouter
-import com.genaku.navrouterconnect.getUid
+import com.genaku.navrouter.NavRouter
+import com.genaku.navrouter.getUid
 import org.koin.core.component.KoinScopeComponent
 import org.koin.core.component.inject
 import org.koin.core.scope.Scope

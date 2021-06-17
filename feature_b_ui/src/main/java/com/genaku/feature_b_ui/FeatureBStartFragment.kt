@@ -3,7 +3,7 @@ package com.genaku.feature_b_ui
 import android.os.Bundle
 import android.view.View
 import com.genaku.feature_b_ui.databinding.FeatureBStartFragmentBinding
-import com.genaku.navrouterbase.NavFeatureRouter
+import com.genaku.navrouter.NavFeatureRouter
 import com.genaku.ui_core.RouterFragment
 import com.genaku.ui_core.getViewModel
 import com.hoc081098.viewbindingdelegate.viewBinding

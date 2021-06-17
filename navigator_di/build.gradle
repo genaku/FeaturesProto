@@ -11,5 +11,8 @@ java {
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     api "io.insert-koin:koin-core:$koin_version"
-    api "com.github.genaku:Router:$router_version"
+    api project(path: ':router')
+    api project(path: ':NavRouter')
+//    api "com.github.genaku:Router:$router_version"
+    api fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
 }

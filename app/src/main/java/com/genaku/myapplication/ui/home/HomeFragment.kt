@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment
 import com.genaku.myapplication.AppScope
 import com.genaku.myapplication.R
 import com.genaku.myapplication.databinding.FragmentHomeBinding
-import com.genaku.navrouterbase.NavRouter
+import com.genaku.navrouter.NavRouter
 import com.genaku.ui_core.getViewModel
 import com.hoc081098.viewbindingdelegate.viewBinding
 import org.koin.android.scope.newScope
@@ -37,7 +37,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), KoinScopeComponent {
                 viewBinding.textHome.text = it
             }
             result.observe(viewLifecycleOwner) {
-                viewBinding.tvResult.text = it
+                viewBinding.tvResult.text = "return from Notification with $it"
             }
             featureResult.observe(viewLifecycleOwner) {
                 viewBinding.tvFeatureResult.text = it

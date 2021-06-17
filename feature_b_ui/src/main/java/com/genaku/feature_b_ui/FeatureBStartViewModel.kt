@@ -7,8 +7,8 @@ import androidx.lifecycle.viewModelScope
 import com.genaku.feature_a_api.FeatureA
 import com.genaku.feature_a_api.FeatureAParams
 import com.genaku.feature_a_api.FeatureAResult
-import com.genaku.navrouterbase.NavFeatureRouter
-import com.genaku.navrouterbase.NavRouter
+import com.genaku.navrouter.NavFeatureRouter
+import com.genaku.navrouter.NavRouter
 import com.genaku.router.observe
 import org.koin.core.parameter.parametersOf
 import org.koin.java.KoinJavaComponent

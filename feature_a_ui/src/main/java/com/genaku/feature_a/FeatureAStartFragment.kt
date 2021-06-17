@@ -5,13 +5,14 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.genaku.feature_a.databinding.FeatureAStartFragmentBinding
-import com.genaku.ui_core.getUid
+import com.genaku.navrouter.getUid
 import com.hoc081098.viewbindingdelegate.viewBinding
-import org.koin.java.KoinJavaComponent
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
-class FeatureAStartFragment: Fragment(R.layout.feature_a_start_fragment) {
+class FeatureAStartFragment: Fragment(R.layout.feature_a_start_fragment), KoinComponent {
 
-    private val storage: FeatureAStorage by KoinJavaComponent.inject(FeatureAStorage::class.java)
+    private val storage: FeatureAStorage by inject()
 
     private val viewBinding by viewBinding(FeatureAStartFragmentBinding::bind)
 
