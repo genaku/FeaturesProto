@@ -4,10 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
-import com.genaku.navrouter.NavRouter
-import com.genaku.navrouter.StorableInstanceState
-import com.genaku.navrouter.StorableNavRouter
-import com.genaku.navrouter.connectTo
+import com.genaku.navrouter.*
 import org.koin.android.ext.android.inject
 import org.koin.core.component.KoinScopeComponent
 import org.koin.core.scope.Scope
@@ -16,20 +13,26 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), KoinScopeCompone
 
     override val scope: Scope = AppScope.scope
 
-    private val router: NavRouter by inject()
+    private val commandQueue: BaseStorableCommandQueue<NavCommand> by inject()
+    private val routerScreens: RouterScreens<NavScreen> by inject()
+    private val featureScreens: RouterScreens<NavFeature> by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        router.connectTo(lifecycleScope, findNavController(R.id.rootNavHostFragment))
+        commandQueue.connectTo(lifecycleScope, findNavController(R.id.rootNavHostFragment))
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
-        (router as StorableInstanceState).onRestoreInstanceState(savedInstanceState)
+        routerScreens.onRestoreInstanceState(savedInstanceState)
+        featureScreens.onRestoreInstanceState(savedInstanceState)
+        commandQueue.onRestoreInstanceState(savedInstanceState)
         super.onRestoreInstanceState(savedInstanceState)
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
+        commandQueue.onSaveInstanceState(outState)
+        featureScreens.onSaveInstanceState(outState)
+        routerScreens.onSaveInstanceState(outState)
         super.onSaveInstanceState(outState)
-        (router as StorableInstanceState).onSaveInstanceState(outState)
     }
 }

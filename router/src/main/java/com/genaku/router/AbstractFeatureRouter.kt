@@ -1,8 +1,9 @@
 package com.genaku.router
 
 abstract class AbstractFeatureRouter<F : Feature, C : RouterCommand>(
-    commandQueue: StorableCommandQueue<C>
-) : AbstractRouter<F, C>(commandQueue) {
+    commandQueue: CommandQueue<C>,
+    routerScreens: IRouterScreens<F>
+) : AbstractRouter<F, C>(commandQueue, routerScreens) {
 
     override fun start(screen: F) {
         if (screen.isAvailable) {

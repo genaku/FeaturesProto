@@ -6,11 +6,10 @@ import androidx.fragment.app.Fragment
 import com.genaku.myapplication.AppScope
 import com.genaku.myapplication.R
 import com.genaku.myapplication.databinding.FragmentHomeBinding
-import com.genaku.navrouter.NavRouter
+import com.genaku.navrouter.*
+import com.genaku.router.CommandQueue
 import com.genaku.ui_core.getViewModel
 import com.hoc081098.viewbindingdelegate.viewBinding
-import org.koin.android.scope.newScope
-import org.koin.core.component.KoinComponent
 import org.koin.core.component.KoinScopeComponent
 import org.koin.core.component.inject
 import org.koin.core.scope.Scope
@@ -23,7 +22,9 @@ class HomeFragment : Fragment(R.layout.fragment_home), KoinScopeComponent {
 
     private val viewBinding by viewBinding(FragmentHomeBinding::bind)
 
-    private val router: NavRouter by inject()
+    private val commandQueue: BaseStorableCommandQueue<NavCommand> by inject()
+    private val routerScreens: RouterScreens<NavScreen> by inject()
+    private val router: NavRouter by inject()// { NavRouter(commandQueue, routerScreens) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

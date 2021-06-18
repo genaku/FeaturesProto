@@ -2,17 +2,11 @@ package com.genaku.router
 
 import kotlinx.coroutines.flow.Flow
 import java.util.*
-import java.util.concurrent.ConcurrentHashMap
-import java.util.concurrent.locks.ReentrantReadWriteLock
-import kotlin.concurrent.read
-import kotlin.concurrent.write
 
 abstract class AbstractRouter<S : Screen, C : RouterCommand>(
-    protected val commandQueue: StorableCommandQueue<C>
+    protected val commandQueue: CommandQueue<C>,
+    protected val routerScreens: IRouterScreens<S>
 ) : Router<S>, CommandFlow<C> {
-
-    private val lock = ReentrantReadWriteLock()
-    private val screens: MutableMap<Long, S> = mutableMapOf()
 
     abstract fun getStartCommand(screen: S, uid: Long): C
 
@@ -21,39 +15,23 @@ abstract class AbstractRouter<S : Screen, C : RouterCommand>(
     override val commandFlow: Flow<C>
         get() = commandQueue.commandFlow
 
-    protected fun getScreenOrNull(uid: Long): S? = lock.read {
-        screens[uid]
-    }
-
-    protected fun getAllScreens() = lock.read { screens }
-
-    protected fun setScreens(newScreens: Map<Long, S>) = lock.write {
-        screens.putAll(newScreens)
-    }
-
     override fun start(screen: S) {
-        val uid = Date().time
-        lock.write {
-            screens[uid] = screen
-        }
+        val uid = routerScreens.addScreen(screen)
         commandQueue.send(getStartCommand(screen, uid))
     }
 
     override fun finish(uid: Long) {
         commandQueue.send(getFinishCommand(uid))
-        lock.write {
-            screens.remove(uid)
-        }
+        routerScreens.deleteScreen(uid)
     }
 
     override fun finishWithResult(uid: Long, result: ScreenResult) {
-        val screen = getScreenOrNull(uid)
+        val screen = routerScreens.getScreenOrNull(uid)
             ?: throw NoSuchElementException("Screen with uid = $uid not found")
         screen.getResultStateFlow().tryEmit(result)
         finish(uid)
     }
 
-    override fun getParametersOrNull(uid: Long): ScreenParams? = lock.write {
-        screens[uid]?.params
-    }
+    override fun getParametersOrNull(uid: Long): ScreenParams? =
+        routerScreens.getParametersOrNull(uid)
 }

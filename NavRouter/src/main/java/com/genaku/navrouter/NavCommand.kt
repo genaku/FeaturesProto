@@ -8,7 +8,7 @@ import java.io.Serializable
  *
  * @author Gena Kuchergin
  */
-sealed class NavCommand: RouterCommand, Serializable
+sealed class NavCommand: RouterCommand
 
 /**
  * Command for Navigation Component to return back from current screen

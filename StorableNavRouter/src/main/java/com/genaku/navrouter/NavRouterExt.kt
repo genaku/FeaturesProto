@@ -4,10 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.LifecycleCoroutineScope
 import androidx.navigation.NavController
-import com.genaku.router.AbstractRouter
-import com.genaku.router.BaseCommandQueue
-import com.genaku.router.RouterCommand
-import com.genaku.router.Screen
+import com.genaku.router.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.channels.toList
 import kotlinx.coroutines.flow.collect
@@ -16,7 +13,7 @@ import kotlinx.serialization.*
 import kotlinx.serialization.json.*
 import java.io.Serializable
 
-fun <S : Screen, C : RouterCommand> AbstractRouter<S, C>.connectTo(
+fun <T : RouterCommand> CommandFlow<T>.connectTo(
     lifecycleScope: LifecycleCoroutineScope,
     navController: NavController
 ) {
