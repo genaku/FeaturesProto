@@ -20,7 +20,7 @@ class FeatureAEndFragment: Fragment(R.layout.feature_a_end_fragment), KoinCompon
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewBinding.finishFeatureAButton.setOnClickListener {
-            featureRouter.finishWithResult(storage.featureUid, FeatureAResult(true))
+            featureRouter.finishWithResult(storage.featureUuid, FeatureAResult(true))
         }
     }
 }

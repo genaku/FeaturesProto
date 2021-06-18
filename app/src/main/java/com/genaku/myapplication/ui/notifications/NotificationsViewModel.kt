@@ -4,10 +4,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.genaku.navrouter.NavRouter
+import java.util.*
 
-class NotificationsViewModel(private val uid: Long, private val router: NavRouter) : ViewModel() {
+class NotificationsViewModel(private val uuid: UUID, private val router: NavRouter) : ViewModel() {
 
-    private val args = router.getParametersOrNull(uid) as NotificationsScreenParams
+    private val args = router.getParametersOrNull(uuid) as NotificationsScreenParams
 
     private val _text = MutableLiveData<String>().apply {
         value = "This is notifications Fragment with text [${args.message}]"
@@ -15,6 +16,6 @@ class NotificationsViewModel(private val uid: Long, private val router: NavRoute
     val text: LiveData<String> = _text
 
     fun backWithResult(yes: Boolean) {
-        router.finishWithResult(uid, NotificationsScreenResult(if (yes) "positive answer" else "negative answer"))
+        router.finishWithResult(uuid, NotificationsScreenResult(if (yes) "positive answer" else "negative answer"))
     }
 }

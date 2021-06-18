@@ -16,7 +16,8 @@ abstract class AbstractNavScreen(override val destinationResId: Int): NavScreen 
 
     abstract override val params: ScreenParams
 
-    override fun getResultStateFlow(): MutableStateFlow<ScreenResult> = MutableStateFlow(
+    @Transient
+    override val resultStateFlow: MutableStateFlow<ScreenResult> = MutableStateFlow(
         EmptyScreenResult
     )
 }

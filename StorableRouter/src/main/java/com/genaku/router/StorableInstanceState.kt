@@ -1,4 +1,4 @@
-package com.genaku.navrouter
+package com.genaku.router
 
 import android.os.Bundle
 

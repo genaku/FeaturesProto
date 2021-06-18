@@ -1,5 +1,7 @@
 package com.genaku.feature_a
 
+import java.util.*
+
 class FeatureAStorage {
-    var featureUid: Long = 0
+    var featureUuid: UUID = UUID.randomUUID()
 }

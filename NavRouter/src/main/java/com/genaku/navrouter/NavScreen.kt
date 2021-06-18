@@ -1,6 +1,6 @@
 package com.genaku.navrouter
 
-import com.genaku.router.Screen
+import com.genaku.router.RouterScreen
 import com.genaku.router.ScreenResult
 import kotlinx.coroutines.flow.MutableStateFlow
 import java.io.Serializable
@@ -10,7 +10,7 @@ import java.io.Serializable
  *
  * @author Gena Kuchergin
  */
-interface NavScreen : Screen, Serializable {
+interface NavScreen : RouterScreen, Serializable {
 
     /**
      * ResId of screen start destination in nav graph

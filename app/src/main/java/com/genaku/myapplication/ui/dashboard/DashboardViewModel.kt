@@ -9,10 +9,11 @@ import com.genaku.myapplication.ui.notifications.NotificationsScreenParams
 import com.genaku.myapplication.ui.notifications.NotificationsScreenResult
 import com.genaku.navrouter.NavRouter
 import com.genaku.router.observe
+import java.util.*
 
-class DashboardViewModel(private val uid: Long, private val router: NavRouter) : ViewModel() {
+class DashboardViewModel(private val uuid: UUID, private val router: NavRouter) : ViewModel() {
 
-    private val args = router.getParametersOrNull(uid) as DashboardScreenParams
+    private val args = router.getParametersOrNull(uuid) as DashboardScreenParams
 
     private val _text = MutableLiveData<String>().apply {
         value = "This is dashboard Fragment with args: [$args]"
@@ -30,6 +31,6 @@ class DashboardViewModel(private val uid: Long, private val router: NavRouter) :
     }
 
     fun backWithResult(success: Boolean) {
-        router.finishWithResult(uid, DashboardScreenResult(success))
+        router.finishWithResult(uuid, DashboardScreenResult(success))
     }
 }

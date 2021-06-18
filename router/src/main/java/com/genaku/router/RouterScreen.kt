@@ -10,7 +10,7 @@ import java.io.Serializable
  *
  * @author Gena Kuchergin
  */
-interface Screen: Serializable {
+interface RouterScreen: Serializable {
 
     /**
      * Parameters for screen
@@ -20,5 +20,5 @@ interface Screen: Serializable {
     /**
      * State flow with result returned from the screen on finish
      */
-    fun getResultStateFlow(): MutableStateFlow<ScreenResult>
+    val resultStateFlow: MutableStateFlow<ScreenResult>
 }

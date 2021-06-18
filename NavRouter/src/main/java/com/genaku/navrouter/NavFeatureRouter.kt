@@ -2,7 +2,9 @@ package com.genaku.navrouter
 
 import com.genaku.router.AbstractFeatureRouter
 import com.genaku.router.CommandQueue
-import com.genaku.router.IRouterScreens
+import com.genaku.router.RouterScreens
+import java.util.*
+import kotlin.NoSuchElementException
 
 /**
  * Feature router interface
@@ -11,15 +13,15 @@ import com.genaku.router.IRouterScreens
  */
 open class NavFeatureRouter(
     commandQueue: CommandQueue<NavCommand>,
-    routerScreens: IRouterScreens<NavFeature>
+    routerScreens: RouterScreens<NavFeature>
 ) : AbstractFeatureRouter<NavFeature, NavCommand>(commandQueue, routerScreens) {
 
-    override fun getStartCommand(screen: NavFeature, uid: Long): NavCommand =
-        Open(screen.destinationResId, uid)
+    override fun getStartCommand(screen: NavFeature, uuid: UUID): NavCommand =
+        Open(screen.destinationResId, uuid)
 
-    override fun getFinishCommand(uid: Long): NavCommand {
-        val screen = routerScreens.getScreenOrNull(uid)
-            ?: throw NoSuchElementException("Screen with uid = $uid not found")
+    override fun getFinishCommand(uuid: UUID): NavCommand {
+        val screen = routerScreens.getScreenOrNull(uuid)
+            ?: throw NoSuchElementException("Screen with uid = $uuid not found")
         return BackAction(screen.finishActionResId)
     }
 }

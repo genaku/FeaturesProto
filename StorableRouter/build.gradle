@@ -50,14 +50,11 @@ dependencies {
     implementation 'org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.1'
 
     api project(path: ':router')
-    api project(path: ':NavRouter')
 
     testImplementation 'junit:junit:4.13.2'
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_version"
-//    testImplementation 'io.kotest:kotest-runner-junit5:4.6.0'
+//    androidTestImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_version"
     testImplementation 'app.cash.turbine:turbine:0.5.2'
-    androidTestImplementation 'app.cash.turbine:turbine:0.5.2'
-//    androidTestImplementation 'io.kotest:kotest-runner-junit5:4.6.0'
+//    androidTestImplementation 'app.cash.turbine:turbine:0.5.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 }

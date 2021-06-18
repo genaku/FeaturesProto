@@ -2,14 +2,15 @@ package com.genaku.myapplication
 
 import com.genaku.navrouter.NavRouter
 import com.genaku.navrouter.NavScreen
-import com.genaku.navrouter.RouterScreens
-import com.genaku.router.IRouterScreens
+import com.genaku.router.RouterScreens
+import com.genaku.router.StorableRouterScreens
 import com.genaku.ui_core.getNavigationModule
 import org.koin.core.component.KoinScopeComponent
 import org.koin.core.component.newScope
 import org.koin.core.context.loadKoinModules
 import org.koin.core.module.Module
 import org.koin.core.scope.Scope
+import org.koin.dsl.bind
 import org.koin.dsl.module
 
 fun getAppKoinModule(): Module {
@@ -18,7 +19,7 @@ fun getAppKoinModule(): Module {
     )
     return module {
         scope<AppScope> {
-            scoped<IRouterScreens<NavScreen>>(override = true) { RouterScreens() }
+            scoped<RouterScreens<NavScreen>>(override = true) { StorableRouterScreens() } bind StorableRouterScreens::class
             scoped(override = true) { NavRouter(get(), get()) }
         }
     }

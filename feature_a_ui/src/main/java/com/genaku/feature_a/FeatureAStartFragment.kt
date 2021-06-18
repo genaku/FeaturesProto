@@ -18,7 +18,7 @@ class FeatureAStartFragment: Fragment(R.layout.feature_a_start_fragment), KoinCo
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        storage.featureUid = getUid(arguments)!!
+        storage.featureUuid = getUid(arguments)!!
         viewBinding.goToEndButton.setOnClickListener {
             findNavController().navigate(R.id.action_featureAStartFragment_to_featureAEndFragment)
         }
