@@ -7,7 +7,7 @@ import androidx.fragment.app.Fragment
 import com.genaku.myapplication.AppScope
 import com.genaku.myapplication.R
 import com.genaku.myapplication.databinding.FragmentHomeBinding
-import com.genaku.navrouter.PersistentNavRouter
+import com.genaku.navrouter.NavRouter
 import com.genaku.ui_core.getViewModel
 import com.hoc081098.viewbindingdelegate.viewBinding
 import org.koin.core.component.KoinScopeComponent
@@ -22,7 +22,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), KoinScopeComponent {
 
     private val viewBinding by viewBinding(FragmentHomeBinding::bind)
 
-    private val router: PersistentNavRouter by inject()
+    private val router: NavRouter by inject()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

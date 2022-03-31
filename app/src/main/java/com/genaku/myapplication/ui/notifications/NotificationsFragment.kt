@@ -6,7 +6,7 @@ import com.genaku.myapplication.AppScope
 import com.genaku.myapplication.R
 import com.genaku.myapplication.databinding.FragmentNotificationsBinding
 import com.genaku.navrouter.NavRouterFragment
-import com.genaku.navrouter.PersistentNavRouter
+import com.genaku.navrouter.NavRouter
 import com.genaku.ui_core.getViewModel
 import com.hoc081098.viewbindingdelegate.viewBinding
 import org.koin.core.component.inject
@@ -15,7 +15,7 @@ class NotificationsFragment : NavRouterFragment(R.layout.fragment_notifications,
 
     private lateinit var notificationsViewModel: NotificationsViewModel
 
-    override val router: PersistentNavRouter by inject()
+    override val router: NavRouter by inject()
 
     private val viewBinding by viewBinding(FragmentNotificationsBinding::bind)
 

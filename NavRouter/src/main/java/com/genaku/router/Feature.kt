@@ -10,7 +10,7 @@ package com.genaku.router
 interface Feature: RouterScreen {
 
     /**
-     * Is feature available (can be started?)
+     * Is feature available (can be started)?
      */
     val isAvailable: Boolean
 }

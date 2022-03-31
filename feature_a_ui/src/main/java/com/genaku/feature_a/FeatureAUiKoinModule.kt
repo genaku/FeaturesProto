@@ -1,7 +1,5 @@
 package com.genaku.feature_a
 
-import com.genaku.feature_a_api.FeatureA
-import com.genaku.feature_a_api.FeatureAParams
 import com.genaku.navrouter.navigationModule
 import org.koin.core.context.loadKoinModules
 import org.koin.core.module.Module

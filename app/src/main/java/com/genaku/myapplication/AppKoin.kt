@@ -1,6 +1,6 @@
 package com.genaku.myapplication
 
-import com.genaku.navrouter.PersistentNavRouter
+import com.genaku.navrouter.NavRouter
 import com.genaku.navrouter.navigationModule
 import org.koin.core.component.KoinScopeComponent
 import org.koin.core.component.newScope
@@ -15,7 +15,7 @@ fun getAppKoinModule(): Module {
     )
     return module {
         scope<AppScope> {
-            scoped(override = true) { PersistentNavRouter() }
+            scoped(override = true) { NavRouter() }
         }
     }
 }

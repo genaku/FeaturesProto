@@ -1,9 +1,6 @@
 package com.genaku.feature_b_ui
 
-import com.genaku.feature_b_api.FeatureB
-import com.genaku.feature_b_api.FeatureBParams
-import com.genaku.feature_b_api.Repppo
-import com.genaku.navrouter.PersistentNavRouter
+import com.genaku.navrouter.NavRouter
 import com.genaku.navrouter.navigationModule
 import org.koin.core.component.KoinScopeComponent
 import org.koin.core.component.newScope
@@ -20,7 +17,7 @@ fun getFeatureBKoinModule(): Module {
         factory<FeatureB> { (params: FeatureBParams) -> NavFeatureB(params, get()) }
 
         scope<FeatureBScope> {
-            scoped { PersistentNavRouter("RouterCommandsB", "RouterScreensB") }
+            scoped { NavRouter("RouterCommandsB", "RouterScreensB") }
         }
     }
 }

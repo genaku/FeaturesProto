@@ -4,18 +4,18 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.genaku.feature_a_api.FeatureA
-import com.genaku.feature_a_api.FeatureAParams
-import com.genaku.feature_a_api.FeatureAResult
-import com.genaku.feature_b_api.FeatureB
-import com.genaku.feature_b_api.FeatureBParams
-import com.genaku.feature_b_api.FeatureBResult
+import com.genaku.feature_a.FeatureA
+import com.genaku.feature_a.FeatureAParams
+import com.genaku.feature_a.FeatureAResult
+import com.genaku.feature_b_ui.FeatureB
+import com.genaku.feature_b_ui.FeatureBParams
+import com.genaku.feature_b_ui.FeatureBResult
 import com.genaku.myapplication.ui.dashboard.DashboardScreen
 import com.genaku.myapplication.ui.dashboard.DashboardScreenParams
 import com.genaku.myapplication.ui.dashboard.DashboardScreenResult
 import com.genaku.navrouter.NavRouter
 import com.genaku.router.observe
-import com.genaku.navrouter.PersistentNavFeatureRouter
+import com.genaku.navrouter.FeatureNavRouter
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import org.koin.core.parameter.parametersOf
@@ -31,7 +31,7 @@ class HomeViewModel(private val router: NavRouter) : ViewModel(), KoinComponent 
     val result: MutableLiveData<String> = MutableLiveData()
     val featureResult = MutableLiveData<String>()
 
-    private val featureRouter: PersistentNavFeatureRouter by inject()
+    private val featureRouter: FeatureNavRouter by inject()
 
     fun openDashboard() {
         val screen = DashboardScreen(DashboardScreenParams(name = "First name", id = 20))

@@ -4,10 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.genaku.feature_a_api.FeatureA
-import com.genaku.feature_a_api.FeatureAParams
-import com.genaku.feature_a_api.FeatureAResult
-import com.genaku.navrouter.NavFeatureRouter
+import com.genaku.feature_a.FeatureA
+import com.genaku.feature_a.FeatureAParams
+import com.genaku.feature_a.FeatureAResult
+import com.genaku.navrouter.FeatureNavRouter
 import com.genaku.navrouter.NavRouter
 import com.genaku.router.observe
 import org.koin.core.parameter.parametersOf
@@ -15,7 +15,7 @@ import org.koin.java.KoinJavaComponent
 
 internal class FeatureBStartViewModel(
     private val router: NavRouter,
-    private val featureRouter: NavFeatureRouter
+    private val featureRouter: FeatureNavRouter
 ) : ViewModel() {
 
     private val timeMutable = MutableLiveData<Long>()

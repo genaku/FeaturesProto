@@ -6,7 +6,7 @@ import com.genaku.myapplication.AppScope
 import com.genaku.myapplication.R
 import com.genaku.myapplication.databinding.FragmentDashboardBinding
 import com.genaku.navrouter.NavRouterFragment
-import com.genaku.navrouter.PersistentNavRouter
+import com.genaku.navrouter.NavRouter
 import com.genaku.ui_core.getViewModel
 import com.hoc081098.viewbindingdelegate.viewBinding
 import org.koin.android.ext.android.inject
@@ -17,7 +17,7 @@ class DashboardFragment : NavRouterFragment(R.layout.fragment_dashboard, AppScop
 
     private val viewBinding by viewBinding(FragmentDashboardBinding::bind)
 
-    override val router: PersistentNavRouter by inject()
+    override val router: NavRouter by inject()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

@@ -10,24 +10,34 @@ import kotlinx.coroutines.Dispatchers
 import java.util.*
 
 /**
- * Navigation router based on Navigation Component
+ * Feature router interface
  *
  * @author Gena Kuchergin
  */
-class NavRouter(
+class FeatureNavRouter(
     commandsKey: String = PersistentCommandQueue.DEFAULT_KEY,
     screensKey: String = PersistentRouterScreens.DEFAULT_KEY,
     dispatcher: CoroutineDispatcher = Dispatchers.Default,
-    instanceState: PersistentRouterState<NavCommand, NavScreen> = PersistentRouterState(
+    instanceState: PersistentRouterState<NavCommand, NavFeature> = PersistentRouterState(
         commandsKey,
         screensKey,
         dispatcher
     )
-) : AbstractRouter<NavScreen, NavCommand>(instanceState.commandQueue, instanceState.routerScreens),
+) : AbstractRouter<NavFeature, NavCommand>(instanceState.commandQueue, instanceState.routerScreens),
     PersistentInstanceState by instanceState {
 
-    override fun getStartCommand(screen: NavScreen, uuid: UUID): NavCommand =
+    override fun getStartCommand(screen: NavFeature, uuid: UUID): NavCommand =
         Open(screen.destinationResId, uuid)
 
-    override fun getFinishCommand(uuid: UUID): NavCommand = Back
+    override fun getFinishCommand(uuid: UUID): NavCommand {
+        val screen = routerScreens.getScreenOrNull(uuid)
+            ?: throw NoSuchElementException("Screen with uid = $uuid not found")
+        return BackAction(screen.finishActionResId)
+    }
+
+    override fun start(screen: NavFeature) {
+        if (screen.isAvailable) {
+            super.start(screen)
+        }
+    }
 }

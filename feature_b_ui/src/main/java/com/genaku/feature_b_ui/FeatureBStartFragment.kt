@@ -5,18 +5,19 @@ import android.view.View
 import androidx.navigation.fragment.findNavController
 import com.genaku.feature_b_ui.databinding.FeatureBStartFragmentBinding
 import com.genaku.navrouter.NavRouterFragment
-import com.genaku.navrouter.PersistentNavFeatureRouter
-import com.genaku.navrouter.PersistentNavRouter
+import com.genaku.navrouter.FeatureNavRouter
+import com.genaku.navrouter.NavRouter
+import com.genaku.navrouter.connect
 import com.genaku.ui_core.getViewModel
 import com.hoc081098.viewbindingdelegate.viewBinding
 import org.koin.core.component.inject
 
 internal class FeatureBStartFragment : NavRouterFragment(R.layout.feature_b_start_fragment, FeatureBScope.scope) {
 
-    private val featureRouter: PersistentNavFeatureRouter by inject()
+    private val featureRouter: FeatureNavRouter by inject()
     private val viewBinding: FeatureBStartFragmentBinding by viewBinding()
 
-    override val router: PersistentNavRouter by inject()
+    override val router: NavRouter by inject()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

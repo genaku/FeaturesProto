@@ -1,4 +1,4 @@
-package com.genaku.feature_a_api
+package com.genaku.feature_a
 
 import com.genaku.navrouter.NavFeature
 import com.genaku.router.ScreenParams
