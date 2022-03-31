@@ -2,6 +2,7 @@ package com.genaku.navrouter
 
 import android.os.Bundle
 import android.util.Log
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
@@ -18,10 +19,8 @@ class PersistentNavFeatureRouter(
     commandsKey: String = PersistentCommandQueue.DEFAULT_KEY,
     screensKey: String = PersistentRouterScreens.DEFAULT_KEY,
     dispatcher: CoroutineDispatcher = Dispatchers.Default
-) : NavFeatureRouter(
-    commandQueue = PersistentCommandQueue(commandsKey, dispatcher),
-    routerScreens = PersistentRouterScreens(screensKey)
-), PersistentInstanceState {
+) : NavFeatureRouter(PersistentCommandQueue(commandsKey, dispatcher), PersistentRouterScreens(screensKey)),
+    PersistentInstanceState {
 
     private val persistentCommandQueue = commandQueue as PersistentCommandQueue
     private val persistentRouterScreens = routerScreens as PersistentRouterScreens
@@ -36,18 +35,15 @@ class PersistentNavFeatureRouter(
         persistentRouterScreens.onSaveInstanceState(outState)
     }
 
-//    fun connect(
-//        LifecycleOwner: LifecycleOwner,
-//        navController: NavController
-//    ) = LifecycleOwner.lifecycleScope.launch {
-//        commandFlow.flowWithLifecycle(LifecycleOwner.lifecycle, androidx.lifecycle.Lifecycle.State.RESUMED)
-//            .collect {
-//                Log.d("TAF", "collect $it")
-//                when (it) {
-//                    Back -> navController.navigateUp()
-//                    is Open -> navController.navigate(it.destinationResId, uidToBundle(it.uuid))
-//                    is BackAction -> navController.navigate(it.actionResId)
-//                }
-//            }
-//    }
+    fun connect(
+        lifecycleOwner: LifecycleOwner,
+        navController: NavController
+    ) {
+        lifecycleOwner.lifecycleScope.launch {
+            commandFlow.flowWithLifecycle(lifecycleOwner.lifecycle, Lifecycle.State.RESUMED)
+                .collect {
+                    processNavigation(it, navController)
+                }
+        }
+    }
 }

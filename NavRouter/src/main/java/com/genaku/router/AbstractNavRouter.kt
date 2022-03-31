@@ -2,17 +2,11 @@ package com.genaku.router
 
 import android.os.Bundle
 import android.util.Log
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.flowWithLifecycle
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import com.genaku.navrouter.Back
 import com.genaku.navrouter.BackAction
 import com.genaku.navrouter.NavCommand
 import com.genaku.navrouter.Open
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
 import java.util.*
 
 abstract class AbstractNavRouter<S : RouterScreen>(
@@ -20,19 +14,13 @@ abstract class AbstractNavRouter<S : RouterScreen>(
     routerScreens: RouterScreens<S>
 ) : AbstractRouter<S, NavCommand>(commandQueue, routerScreens) {
 
-    fun connect(
-        LifecycleOwner: LifecycleOwner,
-        navController: NavController
-    ) = LifecycleOwner.lifecycleScope.launch {
-        commandFlow.flowWithLifecycle(LifecycleOwner.lifecycle, Lifecycle.State.RESUMED)
-            .collect {
-                Log.d("TAF", "collect $it")
-                when (it) {
-                    Back -> navController.navigateUp()
-                    is Open -> navController.navigate(it.destinationResId, uidToBundle(it.uuid))
-                    is BackAction -> navController.navigate(it.actionResId)
-                }
-            }
+    protected open fun processNavigation(command: NavCommand, navController: NavController) {
+        Log.d("TAF", "collect $command")
+        when (command) {
+            Back -> navController.navigateUp()
+            is Open -> navController.navigate(command.destinationResId, uidToBundle(command.uuid))
+            is BackAction -> navController.navigate(command.actionResId)
+        }
     }
 }
 

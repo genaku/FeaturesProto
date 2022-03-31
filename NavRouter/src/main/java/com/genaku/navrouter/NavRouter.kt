@@ -1,6 +1,7 @@
 package com.genaku.navrouter
 
 import android.util.Log
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
@@ -27,20 +28,5 @@ open class NavRouter(
         Open(screen.destinationResId, uuid)
 
     override fun getFinishCommand(uuid: UUID): NavCommand = Back
-
-//    fun connect(
-//        LifecycleOwner: LifecycleOwner,
-//        navController: NavController
-//    ) = LifecycleOwner.lifecycleScope.launch {
-//        commandFlow.flowWithLifecycle(LifecycleOwner.lifecycle, androidx.lifecycle.Lifecycle.State.RESUMED)
-//            .collect {
-//                Log.d("TAF", "collect $it")
-//                when (it) {
-//                    Back -> navController.navigateUp()
-//                    is Open -> navController.navigate(it.destinationResId, uidToBundle(it.uuid))
-//                    is BackAction -> navController.navigate(it.actionResId)
-//                }
-//            }
-//    }
 }
 

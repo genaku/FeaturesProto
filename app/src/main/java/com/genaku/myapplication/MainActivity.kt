@@ -29,18 +29,3 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), KoinScopeCompone
         super.onSaveInstanceState(outState)
     }
 }
-
-//fun <T : RouterCommand> CommandFlow<T>.connect(
-//    LifecycleOwner: LifecycleOwner,
-//    navController: NavController
-//) = LifecycleOwner.lifecycleScope.launch {
-//    commandFlow.flowWithLifecycle(LifecycleOwner.lifecycle, Lifecycle.State.RESUMED)
-//        .collect {
-//            Log.d("TAF", "collect $it")
-//            when (it) {
-//                Back -> navController.navigateUp()
-//                is Open -> navController.navigate(it.destinationResId, uidToBundle(it.uuid))
-//                is BackAction -> navController.navigate(it.actionResId)
-//            }
-//        }
-//}

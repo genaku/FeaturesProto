@@ -4,7 +4,6 @@ import com.genaku.router.AbstractNavRouter
 import com.genaku.router.CommandQueue
 import com.genaku.router.RouterScreens
 import java.util.*
-import kotlin.NoSuchElementException
 
 /**
  * Feature router interface
