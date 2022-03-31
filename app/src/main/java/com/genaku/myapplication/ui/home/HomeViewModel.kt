@@ -13,9 +13,9 @@ import com.genaku.feature_b_api.FeatureBResult
 import com.genaku.myapplication.ui.dashboard.DashboardScreen
 import com.genaku.myapplication.ui.dashboard.DashboardScreenParams
 import com.genaku.myapplication.ui.dashboard.DashboardScreenResult
-import com.genaku.navrouter.NavFeatureRouter
 import com.genaku.navrouter.NavRouter
 import com.genaku.router.observe
+import com.genaku.navrouter.PersistentNavFeatureRouter
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import org.koin.core.parameter.parametersOf
@@ -31,7 +31,7 @@ class HomeViewModel(private val router: NavRouter) : ViewModel(), KoinComponent 
     val result: MutableLiveData<String> = MutableLiveData()
     val featureResult = MutableLiveData<String>()
 
-    private val featureRouter: NavFeatureRouter by inject()
+    private val featureRouter: PersistentNavFeatureRouter by inject()
 
     fun openDashboard() {
         val screen = DashboardScreen(DashboardScreenParams(name = "First name", id = 20))
@@ -61,7 +61,9 @@ class HomeViewModel(private val router: NavRouter) : ViewModel(), KoinComponent 
         featureRouter.start(feature)
     }
 
-    fun startFeatureC() {}
+    fun startFeatureC() {
+
+    }
 
     private fun createFeatureA(id: Long, films: List<String>): FeatureA {
         val params = FeatureAParams(id, films)

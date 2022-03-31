@@ -2,6 +2,7 @@ package com.genaku.myapplication
 
 import android.app.Application
 import com.genaku.feature_a.getFeatureAKoinModule
+import com.genaku.feature_alligator.getAlgFeatureKoinModule
 import com.genaku.feature_b_ui.getFeatureBKoinModule
 import org.koin.android.scope.createScope
 import org.koin.core.context.startKoin
@@ -20,7 +21,8 @@ class MyApplication : Application() {
                 listOf(
                     getAppKoinModule(),
                     getFeatureAKoinModule(),
-                    getFeatureBKoinModule()
+                    getFeatureBKoinModule(),
+                    getAlgFeatureKoinModule()
                 )
             )
         }

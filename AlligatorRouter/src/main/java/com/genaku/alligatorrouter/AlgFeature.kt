@@ -2,4 +2,9 @@ package com.genaku.alligatorrouter
 
 import com.genaku.router.Feature
 
-interface AlgFeature: Feature
+/**
+ * Feature navigation info to use in Alligator navigator
+ *
+ * @author Gena Kuchergin
+ */
+interface AlgFeature: com.genaku.router.Feature

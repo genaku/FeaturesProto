@@ -21,3 +21,4 @@ open class NavRouter(
     override fun getFinishCommand(uuid: UUID): NavCommand = Back
 
 }
+

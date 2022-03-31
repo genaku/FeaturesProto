@@ -1,13 +1,13 @@
 package com.genaku.myapplication.ui.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import com.genaku.myapplication.AppScope
 import com.genaku.myapplication.R
 import com.genaku.myapplication.databinding.FragmentHomeBinding
-import com.genaku.navrouter.*
-import com.genaku.router.StorableRouterScreens
+import com.genaku.navrouter.PersistentNavRouter
 import com.genaku.ui_core.getViewModel
 import com.hoc081098.viewbindingdelegate.viewBinding
 import org.koin.core.component.KoinScopeComponent
@@ -22,10 +22,11 @@ class HomeFragment : Fragment(R.layout.fragment_home), KoinScopeComponent {
 
     private val viewBinding by viewBinding(FragmentHomeBinding::bind)
 
-    private val router: NavRouter by inject()
+    private val router: PersistentNavRouter by inject()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        Log.d("TAF", "nav HomeFragment view created")
         setupViewModel()
         setupButtons()
     }
@@ -47,7 +48,8 @@ class HomeFragment : Fragment(R.layout.fragment_home), KoinScopeComponent {
     private fun setupButtons() {
         with(viewBinding) {
             button1.setOnClickListener {
-                homeViewModel.openDashboard()
+//                TODO
+//                homeViewModel.openDashboard()
             }
             btnFeatureA.setOnClickListener {
                 homeViewModel.startFeatureA()

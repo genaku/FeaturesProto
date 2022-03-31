@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/appStartFragment"
-        android:name="com.genaku.myapplication.ui.dashboard.DashboardFragment"
+        android:name="com.genaku.feature_alligator.dashboard.DashboardFragment"
         android:label="app_start_fragment"
         tools:layout="@layout/fragment_dashboard" />
 
