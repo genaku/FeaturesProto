@@ -41,6 +41,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.4.0'
 
     api project(path: ':feature_a_api')
+    api project(path: ':NavRouter')
 //    api project(path: ':mylibrary')
 //    implementation project(path: ':navigator_impl')
 

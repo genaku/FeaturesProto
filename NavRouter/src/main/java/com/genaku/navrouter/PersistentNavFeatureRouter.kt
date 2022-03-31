@@ -1,11 +1,18 @@
 package com.genaku.navrouter
 
 import android.os.Bundle
+import android.util.Log
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavController
 import com.genaku.storablerouter.PersistentCommandQueue
 import com.genaku.storablerouter.PersistentInstanceState
 import com.genaku.storablerouter.PersistentRouterScreens
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 class PersistentNavFeatureRouter(
     commandsKey: String = PersistentCommandQueue.DEFAULT_KEY,
@@ -28,4 +35,19 @@ class PersistentNavFeatureRouter(
         persistentCommandQueue.onSaveInstanceState(outState)
         persistentRouterScreens.onSaveInstanceState(outState)
     }
+
+//    fun connect(
+//        LifecycleOwner: LifecycleOwner,
+//        navController: NavController
+//    ) = LifecycleOwner.lifecycleScope.launch {
+//        commandFlow.flowWithLifecycle(LifecycleOwner.lifecycle, androidx.lifecycle.Lifecycle.State.RESUMED)
+//            .collect {
+//                Log.d("TAF", "collect $it")
+//                when (it) {
+//                    Back -> navController.navigateUp()
+//                    is Open -> navController.navigate(it.destinationResId, uidToBundle(it.uuid))
+//                    is BackAction -> navController.navigate(it.actionResId)
+//                }
+//            }
+//    }
 }

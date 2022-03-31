@@ -11,7 +11,7 @@ class PersistentRouterScreens<S : RouterScreen>(
 ) : BaseRouterScreens<S>(), PersistentInstanceState {
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
-        val data = savedInstanceState.getSerializable(key) as ScreensData?
+        val data = savedInstanceState.getSerializable(key) as? ScreensData<S>
         if (data == null) {
             addScreens(emptyMap())
         } else {
@@ -34,7 +34,7 @@ class PersistentRouterScreens<S : RouterScreen>(
         Log.d("TAF", "[${Thread.currentThread()}] $msg")
     }
 
-    inner class ScreensData(val screens: Map<UUID, S>) : Serializable
+    class ScreensData<S>(val screens: Map<UUID, S>) : Serializable
 
     companion object {
         const val DEFAULT_KEY = "RouterScreens"

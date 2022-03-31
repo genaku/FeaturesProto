@@ -1,7 +1,7 @@
 package com.genaku.myapplication
 
 import com.genaku.navrouter.PersistentNavRouter
-import com.genaku.ui_core.navigationModule
+import com.genaku.navrouter.navigationModule
 import org.koin.core.component.KoinScopeComponent
 import org.koin.core.component.newScope
 import org.koin.core.context.loadKoinModules

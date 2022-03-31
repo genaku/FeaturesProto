@@ -13,7 +13,7 @@ open class PersistentCommandQueue<C : RouterCommand>(
 ) : StorableCommandFlow<C>(dispatcher), PersistentInstanceState {
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
-        val data = savedInstanceState.getSerializable(key) as? QueueData
+        val data = savedInstanceState.getSerializable(key) as? QueueData<C>
         if (data == null) {
             addCommandsAndResumeFlow(emptyList())
         } else {
@@ -34,7 +34,7 @@ open class PersistentCommandQueue<C : RouterCommand>(
         Log.d("TAF", "[${Thread.currentThread()}] $msg")
     }
 
-    inner class QueueData(val commands: List<C>) : Serializable
+    class QueueData<C>(val commands: List<C>) : Serializable
 
     companion object {
         const val DEFAULT_KEY = "RouterCommands"

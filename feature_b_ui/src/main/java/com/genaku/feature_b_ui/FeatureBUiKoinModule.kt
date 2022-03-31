@@ -4,7 +4,7 @@ import com.genaku.feature_b_api.FeatureB
 import com.genaku.feature_b_api.FeatureBParams
 import com.genaku.feature_b_api.Repppo
 import com.genaku.navrouter.PersistentNavRouter
-import com.genaku.ui_core.navigationModule
+import com.genaku.navrouter.navigationModule
 import org.koin.core.component.KoinScopeComponent
 import org.koin.core.component.newScope
 import org.koin.core.context.loadKoinModules

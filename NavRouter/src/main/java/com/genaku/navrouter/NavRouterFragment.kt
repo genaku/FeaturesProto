@@ -5,6 +5,7 @@ import android.view.View
 import androidx.activity.addCallback
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
+import com.genaku.router.getUid
 import org.koin.core.component.KoinScopeComponent
 import org.koin.core.scope.Scope
 import java.util.*

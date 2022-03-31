@@ -1,6 +1,6 @@
 package com.genaku.navrouter
 
-import com.genaku.router.AbstractFeatureRouter
+import com.genaku.router.AbstractNavRouter
 import com.genaku.router.CommandQueue
 import com.genaku.router.RouterScreens
 import java.util.*
@@ -14,7 +14,7 @@ import kotlin.NoSuchElementException
 open class NavFeatureRouter(
     commandQueue: CommandQueue<NavCommand>,
     routerScreens: RouterScreens<NavFeature>
-) : AbstractFeatureRouter<NavFeature, NavCommand>(commandQueue, routerScreens) {
+) : AbstractNavRouter<NavFeature>(commandQueue, routerScreens) {
 
     override fun getStartCommand(screen: NavFeature, uuid: UUID): NavCommand =
         Open(screen.destinationResId, uuid)
@@ -23,5 +23,11 @@ open class NavFeatureRouter(
         val screen = routerScreens.getScreenOrNull(uuid)
             ?: throw NoSuchElementException("Screen with uid = $uuid not found")
         return BackAction(screen.finishActionResId)
+    }
+
+    override fun start(screen: NavFeature) {
+        if (screen.isAvailable) {
+            super.start(screen)
+        }
     }
 }
