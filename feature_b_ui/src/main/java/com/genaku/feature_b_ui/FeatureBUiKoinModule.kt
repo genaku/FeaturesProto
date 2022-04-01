@@ -17,7 +17,7 @@ fun getFeatureBKoinModule(): Module {
         factory<FeatureB> { (params: FeatureBParams) -> NavFeatureB(params, get()) }
 
         scope<FeatureBScope> {
-            scoped { NavRouter("RouterCommandsB", "RouterScreensB") }
+            scoped { NavRouter("B") }
         }
     }
 }

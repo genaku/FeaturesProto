@@ -7,13 +7,12 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 
 class PersistentRouterState<C: RouterCommand, S : RouterScreen>(
-    commandsKey: String = PersistentCommandQueue.DEFAULT_KEY,
-    screensKey: String = PersistentRouterScreens.DEFAULT_KEY,
+    name: String,
     dispatcher: CoroutineDispatcher = Dispatchers.Default
 ) : PersistentInstanceState {
 
-    val commandQueue = PersistentCommandQueue<C>(commandsKey, dispatcher)
-    val routerScreens = PersistentRouterScreens<S>(screensKey)
+    val commandQueue = PersistentCommandQueue<C>(name, dispatcher)
+    val routerScreens = PersistentRouterScreens<S>(name)
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         commandQueue.onRestoreInstanceState(savedInstanceState)

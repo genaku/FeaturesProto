@@ -6,9 +6,9 @@ import com.genaku.router.RouterScreen
 import java.io.Serializable
 import java.util.*
 
-class PersistentRouterScreens<S : RouterScreen>(
-    private val key: String = DEFAULT_KEY
-) : BaseRouterScreens<S>(), PersistentInstanceState {
+class PersistentRouterScreens<S : RouterScreen>(name: String) : BaseRouterScreens<S>(), PersistentInstanceState {
+
+    private val key = PRE_KEY + name
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         val data = savedInstanceState.getSerializable(key) as? ScreensData<S>
@@ -37,6 +37,6 @@ class PersistentRouterScreens<S : RouterScreen>(
     class ScreensData<S>(val screens: Map<UUID, S>) : Serializable
 
     companion object {
-        const val DEFAULT_KEY = "RouterScreens"
+        private const val PRE_KEY = "RouterScreens"
     }
 }

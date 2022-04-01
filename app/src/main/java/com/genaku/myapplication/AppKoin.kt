@@ -15,7 +15,7 @@ fun getAppKoinModule(): Module {
     )
     return module {
         scope<AppScope> {
-            scoped(override = true) { NavRouter("RouterCommandsApp", "RouterScreensApp") }
+            scoped(override = true) { NavRouter("App") }
         }
     }
 }

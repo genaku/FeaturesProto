@@ -8,9 +8,11 @@ import kotlinx.coroutines.Dispatchers
 import java.io.Serializable
 
 open class PersistentCommandQueue<C : RouterCommand>(
-    private val key: String = DEFAULT_KEY,
+    name: String,
     dispatcher: CoroutineDispatcher = Dispatchers.Default
 ) : PersistentCommandFlow<C>(dispatcher), PersistentInstanceState {
+
+    private val key = PRE_KEY + name
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         val data = savedInstanceState.getSerializable(key) as? QueueData<C>
@@ -37,7 +39,7 @@ open class PersistentCommandQueue<C : RouterCommand>(
     class QueueData<C>(val commands: List<C>) : Serializable
 
     companion object {
-        const val DEFAULT_KEY = "RouterCommands"
+        private const val PRE_KEY = "RouterCommands"
     }
 }
 

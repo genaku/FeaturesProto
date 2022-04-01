@@ -15,14 +15,9 @@ import java.util.*
  * @author Gena Kuchergin
  */
 class NavRouter(
-    commandsKey: String = PersistentCommandQueue.DEFAULT_KEY,
-    screensKey: String = PersistentRouterScreens.DEFAULT_KEY,
+    name: String,
     dispatcher: CoroutineDispatcher = Dispatchers.Default,
-    instanceState: PersistentRouterState<NavCommand, NavScreen> = PersistentRouterState(
-        commandsKey,
-        screensKey,
-        dispatcher
-    )
+    instanceState: PersistentRouterState<NavCommand, NavScreen> = PersistentRouterState(name, dispatcher)
 ) : AbstractRouter<NavScreen, NavCommand>(instanceState.commandQueue, instanceState.routerScreens),
     PersistentInstanceState by instanceState {
 

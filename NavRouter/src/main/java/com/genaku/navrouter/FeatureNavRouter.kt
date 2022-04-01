@@ -15,14 +15,9 @@ import java.util.*
  * @author Gena Kuchergin
  */
 class FeatureNavRouter(
-    commandsKey: String = PersistentCommandQueue.DEFAULT_KEY,
-    screensKey: String = PersistentRouterScreens.DEFAULT_KEY,
+    name: String,
     dispatcher: CoroutineDispatcher = Dispatchers.Default,
-    instanceState: PersistentRouterState<NavCommand, NavFeature> = PersistentRouterState(
-        commandsKey,
-        screensKey,
-        dispatcher
-    )
+    instanceState: PersistentRouterState<NavCommand, NavFeature> = PersistentRouterState(name, dispatcher)
 ) : AbstractRouter<NavFeature, NavCommand>(instanceState.commandQueue, instanceState.routerScreens),
     PersistentInstanceState by instanceState {
 
