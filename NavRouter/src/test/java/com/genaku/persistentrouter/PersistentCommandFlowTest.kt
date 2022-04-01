@@ -1,4 +1,4 @@
-package com.genaku.storablerouter
+package com.genaku.persistentrouter
 
 import app.cash.turbine.test
 import com.genaku.router.RouterCommand
@@ -13,13 +13,13 @@ import kotlin.time.ExperimentalTime
 
 @ExperimentalCoroutinesApi
 @ExperimentalTime
-class StorableCommandFlowTest {
+class PersistentCommandFlowTest {
 
     private val testDispatcher = TestCoroutineDispatcher()
     private val testScope = TestCoroutineScope(testDispatcher)
 
-    inner class MorozovStorableCommandFlow<C : RouterCommand>(dispatcher: CoroutineDispatcher) :
-        StorableCommandFlow<C>(dispatcher) {
+    inner class MorozovPersistentCommandFlow<C : RouterCommand>(dispatcher: CoroutineDispatcher) :
+        PersistentCommandFlow<C>(dispatcher) {
         public override fun pullAllCommandsAndPauseFlow(): List<C> = super.pullAllCommandsAndPauseFlow()
 
         public override fun addCommandsAndResumeFlow(storedCommands: List<C>) =
@@ -28,7 +28,7 @@ class StorableCommandFlowTest {
 
     @Test
     fun `проверим, отправляются ли команды через flow`() = runBlockingTest {
-        val q = MorozovStorableCommandFlow<Comm>(dispatcher = testDispatcher)
+        val q = MorozovPersistentCommandFlow<TestCommand>(dispatcher = testDispatcher)
         q.send(First)
         q.send(Second)
         q.commandFlow.test {
@@ -40,7 +40,7 @@ class StorableCommandFlowTest {
 
     @Test
     fun `проверим, получаем ли мы список неотработанных команд`() = testScope.runBlockingTest {
-        val q = MorozovStorableCommandFlow<Comm>(dispatcher = testDispatcher)
+        val q = MorozovPersistentCommandFlow<TestCommand>(dispatcher = testDispatcher)
         q.send(First)
         q.send(Second)
         val toStore = q.pullAllCommandsAndPauseFlow()
@@ -51,7 +51,7 @@ class StorableCommandFlowTest {
     @Test
     fun `getCommandsToStore должен вернуть список неотработанных команд и удалить их из очереди`() =
         testScope.runBlockingTest {
-            val q = MorozovStorableCommandFlow<Comm>(dispatcher = testDispatcher)
+            val q = MorozovPersistentCommandFlow<TestCommand>(dispatcher = testDispatcher)
             q.send(First)
             q.send(Second)
             val toStore = q.pullAllCommandsAndPauseFlow()
@@ -71,7 +71,7 @@ class StorableCommandFlowTest {
     @Test
     fun `setCommandsFromStore в пустую очередь команд должен добавить новые команды`() =
         testScope.runBlockingTest {
-            val q = MorozovStorableCommandFlow<Comm>(dispatcher = testDispatcher)
+            val q = MorozovPersistentCommandFlow<TestCommand>(dispatcher = testDispatcher)
             q.addCommandsAndResumeFlow(listOf(First, Second))
             q.commandFlow.test {
                 assertEquals(First, expectItem())
@@ -83,7 +83,7 @@ class StorableCommandFlowTest {
     @Test
     fun `после восстановления очереди через setCommandsFromStore добавление новой команды должно поместить ее в конец очереди`() =
         testScope.runBlockingTest {
-            val q = MorozovStorableCommandFlow<Comm>(dispatcher = testDispatcher)
+            val q = MorozovPersistentCommandFlow<TestCommand>(dispatcher = testDispatcher)
             q.addCommandsAndResumeFlow(listOf(First, Second))
             q.send(Third)
             q.commandFlow.test {
@@ -97,7 +97,7 @@ class StorableCommandFlowTest {
     @Test
     fun `после восстановления очереди через setCommandsFromStore проверим, что они добавились и отдаются через flow, и затем добавление команды работает корректно`() =
         testScope.runBlockingTest {
-            val q = MorozovStorableCommandFlow<Comm>(dispatcher = testDispatcher)
+            val q = MorozovPersistentCommandFlow<TestCommand>(dispatcher = testDispatcher)
             q.addCommandsAndResumeFlow(listOf(First, Second))
             q.commandFlow.test {
                 assertEquals(First, expectItem())
@@ -114,7 +114,7 @@ class StorableCommandFlowTest {
     @Test
     fun `если до восстановления состояния успели отправить команду, она должна оказаться в конце, после сохраненного списка команд`() =
         testScope.runBlockingTest {
-            val q = MorozovStorableCommandFlow<Comm>(dispatcher = testDispatcher)
+            val q = MorozovPersistentCommandFlow<TestCommand>(dispatcher = testDispatcher)
             q.send(Third)
             q.addCommandsAndResumeFlow(listOf(First, Second))
             q.commandFlow.test {
@@ -124,10 +124,9 @@ class StorableCommandFlowTest {
                 cancelAndIgnoreRemainingEvents()
             }
         }
-
-    sealed class Comm : RouterCommand
-    object First : Comm()
-    object Second : Comm()
-    object Third : Comm()
-    
 }
+
+sealed class TestCommand : RouterCommand
+object First : TestCommand()
+object Second : TestCommand()
+object Third : TestCommand()

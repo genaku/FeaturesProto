@@ -1,4 +1,4 @@
-package com.genaku.storablerouter
+package com.genaku.persistentrouter
 
 import android.os.Bundle
 import com.genaku.router.RouterCommand

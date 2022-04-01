@@ -1,4 +1,4 @@
-package com.genaku.storablerouter
+package com.genaku.persistentrouter
 
 import android.os.Bundle
 import android.util.Log
@@ -10,7 +10,7 @@ import java.io.Serializable
 open class PersistentCommandQueue<C : RouterCommand>(
     private val key: String = DEFAULT_KEY,
     dispatcher: CoroutineDispatcher = Dispatchers.Default
-) : StorableCommandFlow<C>(dispatcher), PersistentInstanceState {
+) : PersistentCommandFlow<C>(dispatcher), PersistentInstanceState {
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         val data = savedInstanceState.getSerializable(key) as? QueueData<C>

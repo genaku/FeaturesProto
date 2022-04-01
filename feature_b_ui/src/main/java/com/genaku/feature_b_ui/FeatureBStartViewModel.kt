@@ -25,21 +25,25 @@ internal class FeatureBStartViewModel(
     val result = MutableLiveData<String>()
 
     fun navigateToFeatureA() {
-        val feature = createFeatureA(id = 2, films = emptyList())
-        feature.observe<FeatureAResult>(viewModelScope) {
-            // передать результат в обработку в usecase или куда-угодно
-            // здесь просто выведем на экран
-            featureResult.postValue("FeatureA result = $it")
-        }
-        featureRouter.start(feature)
+        featureRouter.start(
+            createFeatureA(id = 2, films = emptyList()).apply {
+                observe<FeatureAResult>(viewModelScope) {
+                    // передать результат в обработку в usecase или куда-угодно
+                    // здесь просто выведем на экран
+                    featureResult.postValue("FeatureA result = $it")
+                }
+            }
+        )
     }
 
     fun navigateToFeatureBEnd() {
-        val screen = FeatureBEndScreen(FeatureBEndScreenParams("This is feature B end message"))
-        screen.observe<FeatureBEndScreenResult>(viewModelScope) {
-            result.postValue(it.answer)
-        }
-        router.start(screen)
+        router.start(
+            FeatureBEndScreen(FeatureBEndScreenParams("This is feature B end message")).apply {
+                observe<FeatureBEndScreenResult>(viewModelScope) {
+                    result.postValue(it.answer)
+                }
+            }
+        )
     }
 
     private fun createFeatureA(id: Long, films: List<String>): FeatureA {

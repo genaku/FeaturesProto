@@ -1,4 +1,4 @@
-package com.genaku.storablerouter
+package com.genaku.persistentrouter
 
 import com.genaku.router.EmptyScreenResult
 import com.genaku.router.RouterScreen

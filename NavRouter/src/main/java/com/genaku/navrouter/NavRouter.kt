@@ -1,10 +1,10 @@
 package com.genaku.navrouter
 
 import com.genaku.router.AbstractRouter
-import com.genaku.storablerouter.PersistentCommandQueue
-import com.genaku.storablerouter.PersistentInstanceState
-import com.genaku.storablerouter.PersistentRouterScreens
-import com.genaku.storablerouter.PersistentRouterState
+import com.genaku.persistentrouter.PersistentCommandQueue
+import com.genaku.persistentrouter.PersistentInstanceState
+import com.genaku.persistentrouter.PersistentRouterScreens
+import com.genaku.persistentrouter.PersistentRouterState
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import java.util.*

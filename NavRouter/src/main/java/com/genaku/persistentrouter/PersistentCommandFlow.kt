@@ -1,4 +1,4 @@
-package com.genaku.storablerouter
+package com.genaku.persistentrouter
 
 import com.genaku.router.CommandQueue
 import com.genaku.router.RouterCommand
@@ -12,7 +12,7 @@ import java.util.*
 import java.util.concurrent.ConcurrentLinkedQueue
 import java.util.concurrent.atomic.AtomicBoolean
 
-open class StorableCommandFlow<C : RouterCommand>(
+open class PersistentCommandFlow<C : RouterCommand>(
     dispatcher: CoroutineDispatcher = Dispatchers.Default
 ) : CommandQueue<C> {
 
@@ -26,7 +26,7 @@ open class StorableCommandFlow<C : RouterCommand>(
             tryGetCommand()?.run {
                 log("emit command $this")
                 emit(this)
-                commands.remove()
+                commands.poll()
             } ?: wait()
         }
     }.flowOn(dispatcher)
