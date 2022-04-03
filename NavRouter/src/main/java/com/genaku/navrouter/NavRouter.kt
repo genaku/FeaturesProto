@@ -1,10 +1,9 @@
 package com.genaku.navrouter
 
-import com.genaku.router.AbstractRouter
-import com.genaku.persistentrouter.PersistentCommandQueue
+import com.example.navrouter_api.navrouter.NavScreen
 import com.genaku.persistentrouter.PersistentInstanceState
-import com.genaku.persistentrouter.PersistentRouterScreens
 import com.genaku.persistentrouter.PersistentRouterState
+import com.genaku.router.AbstractRouter
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import java.util.*
@@ -17,9 +16,8 @@ import java.util.*
 class NavRouter(
     name: String,
     dispatcher: CoroutineDispatcher = Dispatchers.Default,
-    instanceState: PersistentRouterState<NavCommand, NavScreen> = PersistentRouterState(name, dispatcher)
-) : AbstractRouter<NavScreen, NavCommand>(instanceState.commandQueue, instanceState.routerScreens),
-    PersistentInstanceState by instanceState {
+    instanceState: PersistentRouterState<NavScreen, NavCommand> = PersistentRouterState(name, dispatcher)
+) : AbstractRouter<NavScreen, NavCommand>(instanceState), PersistentInstanceState by instanceState {
 
     override fun getStartCommand(screen: NavScreen, uuid: UUID): NavCommand =
         Open(screen.destinationResId, uuid)

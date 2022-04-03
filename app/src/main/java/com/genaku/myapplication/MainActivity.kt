@@ -3,7 +3,8 @@ package com.genaku.myapplication
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
-import com.genaku.navrouter.FeatureNavRouter
+import com.example.navrouter_api.navrouter.FeatureNavRouter
+import com.genaku.navrouter.FeatureNavRouterImpl
 import com.genaku.navrouter.connect
 import org.koin.android.ext.android.inject
 import org.koin.core.component.KoinScopeComponent
@@ -17,16 +18,16 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), KoinScopeCompone
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        featureRouter.connect(this, findNavController(R.id.rootNavHostFragment))
+        (featureRouter as FeatureNavRouterImpl).connect(this, findNavController(R.id.rootNavHostFragment))
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
-        featureRouter.onRestoreInstanceState(savedInstanceState)
+        (featureRouter as FeatureNavRouterImpl).onRestoreInstanceState(savedInstanceState)
         super.onRestoreInstanceState(savedInstanceState)
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
-        featureRouter.onSaveInstanceState(outState)
+        (featureRouter as FeatureNavRouterImpl).onSaveInstanceState(outState)
         super.onSaveInstanceState(outState)
     }
 }

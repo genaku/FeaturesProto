@@ -10,6 +10,7 @@ java {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation project(path: ':navrouter_api')
 //    api project(path: ':router')
 //    api "com.github.genaku:Router:$router_version"
 }

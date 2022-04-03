@@ -3,8 +3,9 @@ package com.genaku.feature_a
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import com.example.navrouter_api.navrouter.FeatureNavRouter
 import com.genaku.feature_a.databinding.FeatureAEndFragmentBinding
-import com.genaku.navrouter.FeatureNavRouter
+import com.genaku.feature_a_api.FeatureAResult
 import com.hoc081098.viewbindingdelegate.viewBinding
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject

@@ -2,8 +2,8 @@ package com.genaku.myapplication.ui.notifications
 
 import com.genaku.myapplication.R
 import com.genaku.navrouter.AbstractNavScreen
-import com.genaku.router.ScreenParams
-import com.genaku.router.ScreenResult
+import com.example.navrouter_api.router.ScreenParams
+import com.example.navrouter_api.router.ScreenResult
 
 class NotificationsScreen(override val params: NotificationsScreenParams) :
     AbstractNavScreen(R.id.navigation_notifications)

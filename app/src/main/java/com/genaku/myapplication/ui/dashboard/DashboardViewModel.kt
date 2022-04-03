@@ -4,11 +4,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.navrouter_api.router.observe
 import com.genaku.myapplication.ui.notifications.NotificationsScreen
 import com.genaku.myapplication.ui.notifications.NotificationsScreenParams
 import com.genaku.myapplication.ui.notifications.NotificationsScreenResult
 import com.genaku.navrouter.NavRouter
-import com.genaku.router.observe
 import java.util.*
 
 class DashboardViewModel(private val uuid: UUID, private val router: NavRouter) : ViewModel() {

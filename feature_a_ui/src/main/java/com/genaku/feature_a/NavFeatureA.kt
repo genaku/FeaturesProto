@@ -1,6 +1,8 @@
 package com.genaku.feature_a
 
 import android.util.Log
+import com.genaku.feature_a_api.FeatureA
+import com.genaku.feature_a_api.FeatureAParams
 import com.genaku.navrouter.AbstractNavFeature
 
 class NavFeatureA(override val params: FeatureAParams) : AbstractNavFeature(

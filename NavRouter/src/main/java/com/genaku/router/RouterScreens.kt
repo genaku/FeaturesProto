@@ -1,5 +1,7 @@
 package com.genaku.router
 
+import com.example.navrouter_api.router.RouterScreen
+import com.example.navrouter_api.router.ScreenParameters
 import java.util.*
 
 interface RouterScreens<S : RouterScreen> : ScreenParameters {

@@ -2,10 +2,11 @@ package com.genaku.feature_b_ui
 
 import android.os.Bundle
 import android.view.View
+import com.example.navrouter_api.navrouter.FeatureNavRouter
+import com.genaku.feature_b_api.FeatureBResult
 import com.genaku.feature_b_ui.databinding.FeatureBEndFragmentBinding
 import com.genaku.navrouter.NavRouter
 import com.genaku.navrouter.NavRouterFragment
-import com.genaku.navrouter.FeatureNavRouter
 import com.hoc081098.viewbindingdelegate.viewBinding
 import org.koin.core.component.inject
 

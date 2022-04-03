@@ -3,9 +3,9 @@ package com.genaku.feature_b_ui
 import android.os.Bundle
 import android.view.View
 import androidx.navigation.fragment.findNavController
+import com.example.navrouter_api.navrouter.FeatureNavRouter
 import com.genaku.feature_b_ui.databinding.FeatureBStartFragmentBinding
 import com.genaku.navrouter.NavRouterFragment
-import com.genaku.navrouter.FeatureNavRouter
 import com.genaku.navrouter.NavRouter
 import com.genaku.navrouter.connect
 import com.genaku.ui_core.getViewModel

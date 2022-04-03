@@ -1,8 +1,8 @@
 package com.genaku.persistentrouter
 
-import com.genaku.router.RouterScreen
+import com.example.navrouter_api.router.RouterScreen
 import com.genaku.router.RouterScreens
-import com.genaku.router.ScreenParams
+import com.example.navrouter_api.router.ScreenParams
 import java.util.*
 import java.util.concurrent.ConcurrentHashMap
 

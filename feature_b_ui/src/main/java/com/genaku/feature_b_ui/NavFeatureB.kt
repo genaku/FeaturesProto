@@ -1,5 +1,8 @@
 package com.genaku.feature_b_ui
 
+import com.genaku.feature_b_api.FeatureB
+import com.genaku.feature_b_api.FeatureBParams
+import com.genaku.feature_b_api.Repppo
 import com.genaku.navrouter.AbstractNavFeature
 import java.util.*
 

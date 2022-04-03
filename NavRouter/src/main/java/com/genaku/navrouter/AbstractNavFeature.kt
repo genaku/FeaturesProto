@@ -1,5 +1,7 @@
 package com.genaku.navrouter
 
+import com.example.navrouter_api.navrouter.NavFeature
+
 /**
  * Abstract nav feature
  *

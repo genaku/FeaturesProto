@@ -2,8 +2,8 @@ package com.genaku.myapplication.ui.dashboard
 
 import com.genaku.myapplication.R
 import com.genaku.navrouter.AbstractNavScreen
-import com.genaku.router.ScreenParams
-import com.genaku.router.ScreenResult
+import com.example.navrouter_api.router.ScreenParams
+import com.example.navrouter_api.router.ScreenResult
 
 class DashboardScreen(override val params: DashboardScreenParams) : AbstractNavScreen(R.id.navigation_dashboard)
 

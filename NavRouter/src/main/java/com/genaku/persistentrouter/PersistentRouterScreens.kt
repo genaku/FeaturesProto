@@ -2,7 +2,7 @@ package com.genaku.persistentrouter
 
 import android.os.Bundle
 import android.util.Log
-import com.genaku.router.RouterScreen
+import com.example.navrouter_api.router.RouterScreen
 import java.io.Serializable
 import java.util.*
 

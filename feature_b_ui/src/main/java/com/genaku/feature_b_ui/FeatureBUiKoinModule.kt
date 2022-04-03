@@ -1,5 +1,10 @@
 package com.genaku.feature_b_ui
 
+import com.example.navrouter_api.navrouter.NavFeature
+import com.example.navrouter_api.router.FeatureRouter
+import com.genaku.feature_b_api.FeatureB
+import com.genaku.feature_b_api.FeatureBParams
+import com.genaku.feature_b_api.Repppo
 import com.genaku.navrouter.NavRouter
 import com.genaku.navrouter.navigationModule
 import org.koin.core.component.KoinScopeComponent

@@ -1,8 +1,9 @@
 package com.genaku.navrouter
 
-import com.genaku.router.EmptyScreenResult
-import com.genaku.router.ScreenParams
-import com.genaku.router.ScreenResult
+import com.example.navrouter_api.navrouter.NavScreen
+import com.example.navrouter_api.router.EmptyScreenResult
+import com.example.navrouter_api.router.ScreenParams
+import com.example.navrouter_api.router.ScreenResult
 import kotlinx.coroutines.flow.MutableStateFlow
 
 /**

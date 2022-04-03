@@ -1,15 +1,21 @@
 package com.genaku.router
 
+import com.example.navrouter_api.router.Router
+import com.example.navrouter_api.router.RouterScreen
+import com.example.navrouter_api.router.ScreenParameters
+import com.example.navrouter_api.router.ScreenResult
 import java.util.*
 
 abstract class AbstractRouter<S : RouterScreen, C : RouterCommand>(
-    protected val commandQueue: CommandQueue<C>,
-    protected val routerScreens: RouterScreens<S>
-) : Router<S>, CommandFlow<C> by commandQueue, ScreenParameters by routerScreens {
+    protected val routerState: RouterState<S, C>,
+) : Router<S>, CommandFlow<C> by routerState.commandQueue, ScreenParameters by routerState.routerScreens {
 
     abstract fun getStartCommand(screen: S, uuid: UUID): C
 
     abstract fun getFinishCommand(uuid: UUID): C
+
+    protected val routerScreens = routerState.routerScreens
+    protected val commandQueue = routerState.commandQueue
 
     override fun start(screen: S) {
         screen.beforeStart()
@@ -33,3 +39,4 @@ abstract class AbstractRouter<S : RouterScreen, C : RouterCommand>(
     private fun getScreen(uuid: UUID) = (routerScreens.getScreenOrNull(uuid)
         ?: throw NoSuchElementException("Screen with uuid = $uuid not found"))
 }
+

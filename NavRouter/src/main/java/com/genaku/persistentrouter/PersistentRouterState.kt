@@ -1,18 +1,19 @@
 package com.genaku.persistentrouter
 
 import android.os.Bundle
+import com.example.navrouter_api.router.RouterScreen
 import com.genaku.router.RouterCommand
-import com.genaku.router.RouterScreen
+import com.genaku.router.RouterState
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 
-class PersistentRouterState<C: RouterCommand, S : RouterScreen>(
+class PersistentRouterState<S : RouterScreen, C: RouterCommand>(
     name: String,
     dispatcher: CoroutineDispatcher = Dispatchers.Default
-) : PersistentInstanceState {
+) : RouterState<S, C>, PersistentInstanceState {
 
-    val commandQueue = PersistentCommandQueue<C>(name, dispatcher)
-    val routerScreens = PersistentRouterScreens<S>(name)
+    override val commandQueue = PersistentCommandQueue<C>(name, dispatcher)
+    override val routerScreens = PersistentRouterScreens<S>(name)
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         commandQueue.onRestoreInstanceState(savedInstanceState)

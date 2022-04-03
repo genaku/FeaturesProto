@@ -1,9 +1,9 @@
 package com.genaku.persistentrouter
 
-import com.genaku.router.EmptyScreenResult
+import com.example.navrouter_api.router.EmptyScreenResult
 import com.genaku.router.RouterScreen
-import com.genaku.router.ScreenParams
-import com.genaku.router.ScreenResult
+import com.example.navrouter_api.router.ScreenParams
+import com.example.navrouter_api.router.ScreenResult
 import kotlinx.coroutines.flow.MutableStateFlow
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotEquals
