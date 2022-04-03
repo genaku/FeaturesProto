@@ -12,19 +12,24 @@ abstract class AbstractRouter<S : RouterScreen, C : RouterCommand>(
     abstract fun getFinishCommand(uuid: UUID): C
 
     override fun start(screen: S) {
+        screen.beforeStart()
         val uuid = routerScreens.addScreen(screen)
         commandQueue.send(getStartCommand(screen, uuid))
     }
 
     override fun finish(uuid: UUID) {
+        val screen = getScreen(uuid)
         commandQueue.send(getFinishCommand(uuid))
+        screen.onFinish()
         routerScreens.deleteScreen(uuid)
     }
 
     override fun finishWithResult(uuid: UUID, result: ScreenResult) {
-        val screen = routerScreens.getScreenOrNull(uuid)
-            ?: throw NoSuchElementException("Screen with uuid = $uuid not found")
+        val screen = getScreen(uuid)
         screen.resultStateFlow.tryEmit(result)
         finish(uuid)
     }
+
+    private fun getScreen(uuid: UUID) = (routerScreens.getScreenOrNull(uuid)
+        ?: throw NoSuchElementException("Screen with uuid = $uuid not found"))
 }

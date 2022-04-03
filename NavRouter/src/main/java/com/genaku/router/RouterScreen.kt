@@ -24,6 +24,16 @@ interface RouterScreen: Serializable {
      * State flow with result returned from the screen on finish
      */
     val resultStateFlow: MutableStateFlow<ScreenResult>
+
+    /**
+     * Execute before start of screen
+     */
+    fun beforeStart() {}
+
+    /**
+     * Execute on screen finish
+     */
+    fun onFinish() {}
 }
 
 /**

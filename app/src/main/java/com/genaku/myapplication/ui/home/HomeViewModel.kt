@@ -1,5 +1,6 @@
 package com.genaku.myapplication.ui.home
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -49,6 +50,7 @@ class HomeViewModel(private val router: NavRouter) : ViewModel(), KoinComponent 
             // передать результат в обработку в usecase или куда-угодно
             // здесь просто выведем на экран
             featureResult.postValue("FeatureA result = $it")
+            Log.d("TAF", "FeatureA result = $it")
         }
         featureRouter.start(feature)
     }
