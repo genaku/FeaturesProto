@@ -1,6 +1,7 @@
 package com.genaku.navrouter
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.activity.addCallback
 import androidx.annotation.LayoutRes
@@ -17,6 +18,7 @@ abstract class NavRouterFragment(@LayoutRes contentLayoutId: Int, override val s
     protected val uid: UUID by lazy { getUid(arguments)!! } // Если uid == null, значит во фрагмент пришли не через роутер. Может не стоит наследовать его от RouterFragment?
 
     protected open fun onBack() {
+        Log.d("TAF", "onback $uid")
         router.finish(uid)
     }
 

@@ -1,5 +1,6 @@
 package com.genaku.router
 
+import android.util.Log
 import com.example.navrouter_api.router.Router
 import com.example.navrouter_api.router.RouterScreen
 import com.example.navrouter_api.router.ScreenParameters
@@ -20,10 +21,12 @@ abstract class AbstractRouter<S : RouterScreen, C : RouterCommand>(
     override fun start(screen: S) {
         screen.beforeStart()
         val uuid = routerScreens.addScreen(screen)
+        Log.d("TAF", "$this start $uuid")
         commandQueue.send(getStartCommand(screen, uuid))
     }
 
     override fun finish(uuid: UUID) {
+        Log.d("TAF", "$this finish $uuid")
         val screen = getScreen(uuid)
         commandQueue.send(getFinishCommand(uuid))
         screen.onFinish()

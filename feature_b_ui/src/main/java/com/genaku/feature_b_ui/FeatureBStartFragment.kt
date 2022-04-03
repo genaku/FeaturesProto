@@ -1,6 +1,7 @@
 package com.genaku.feature_b_ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.navigation.fragment.findNavController
 import com.example.navrouter_api.navrouter.FeatureNavRouter
@@ -37,5 +38,10 @@ internal class FeatureBStartFragment : NavRouterFragment(R.layout.feature_b_star
             }
         }
         router.connect(requireActivity(), findNavController())
+    }
+
+    override fun onBack() {
+        Log.d("TAF", "onback $uid")
+        featureRouter.finish(uid)
     }
 }
